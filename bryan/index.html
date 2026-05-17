@@ -1,1 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bryan Knows Lending</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+
+:root{
+  --dark:    #111820;
+  --dark-2:  #192330;
+  --dark-3:  #1f2d3d;
+  --gold:    #B8892A;
+  --gold-lt: #CFA24C;
+  --gold-xs: rgba(184,137,42,0.13);
+  --cream:   #F0EBE3;
+  --warm:    #FAF8F5;
+  --white:   #FFFFFF;
+  --ink:     #181818;
+  --slate:   #546070;
+  --muted:   #8A96A4;
+  --line-lt: rgba(255,255,255,0.08);
+  --line-dk: rgba(0,0,0,0.09);
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'Jost', system-ui, sans-serif;
+  --mono:   'DM Mono', monospace;
+}
+
+body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ─── NAV ─────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-dk);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;
+}
+.nav-logo{
+  font-family:var(--serif);font-size:20px;font-weight:600;
+  color:var(--ink);letter-spacing:0.02em;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{
+  font-size:13px;font-weight:400;letter-spacing:0.06em;
+  color:var(--slate);transition:color 0.2s;text-transform:uppercase;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta-btn{
+  background:var(--dark) !important;color:var(--white) !important;
+  padding:9px 24px !important;border-radius:1px;
+  font-weight:500 !important;transition:background 0.2s !important;
+}
+.nav-cta-btn:hover{background:var(--dark-3) !important}
+
+/* ─── HERO — FULL BLEED PHOTO ─────────── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+/* photo area — replace .hero-photo bg with real img */
+.hero-photo{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, #0f1c27 0%, #1a2e3f 40%, #162438 70%, #0e1a24 100%);
+  /* When photo available: background:url('bryan-hero.jpg') center/cover no-repeat; */
+}
+/* dark gradient over photo so text reads */
+.hero-photo::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to top, rgba(10,16,22,0.92) 0%, rgba(10,16,22,0.55) 40%, rgba(10,16,22,0.25) 100%),
+    linear-gradient(to right, rgba(10,16,22,0.0) 50%, rgba(10,16,22,0.3) 100%);
+}
+/* placeholder visual while waiting for photo */
+.hero-placeholder-figure{
+  position:absolute;
+  bottom:0;left:12%;
+  width:38%;max-width:520px;
+  height:88%;
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0.12;
+  pointer-events:none;
+}
+.hero-placeholder-figure svg{width:100%;height:100%}
+
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 72px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:end;
+}
+.hero-text{max-width:620px}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold-lt);
+  margin-bottom:20px;display:block;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(54px,6.5vw,88px);
+  font-weight:600;line-height:1.0;
+  color:var(--white);letter-spacing:-0.01em;
+  margin-bottom:24px;
+}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero-sub{
+  font-size:16px;font-weight:300;
+  color:rgba(255,255,255,0.58);
+  line-height:1.85;max-width:480px;
+  margin-bottom:40px;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--white);
+  padding:14px 34px;font-family:var(--sans);
+  font-size:12px;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;border:none;cursor:pointer;
+  transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.btn-ghost-light{
+  background:transparent;color:rgba(255,255,255,0.7);
+  padding:14px 34px;font-family:var(--sans);
+  font-size:12px;font-weight:400;letter-spacing:0.1em;
+  text-transform:uppercase;border:1px solid rgba(255,255,255,0.25);
+  cursor:pointer;transition:border-color 0.2s,color 0.2s;display:inline-block;
+}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,0.6);color:var(--white)}
+
+/* hero right — stats stacked bottom-right */
+.hero-stats{
+  display:flex;flex-direction:column;gap:0;align-self:end;
+  justify-self:end;padding-bottom:4px;
+}
+.hero-stat{
+  padding:18px 0 18px 32px;
+  border-left:1px solid rgba(255,255,255,0.12);
+  margin-bottom:4px;
+}
+.hero-stat-num{
+  font-family:var(--serif);font-size:38px;font-weight:600;
+  color:var(--gold-lt);line-height:1;display:block;
+}
+.hero-stat-label{
+  font-size:11px;font-weight:300;letter-spacing:0.08em;
+  text-transform:uppercase;color:rgba(255,255,255,0.35);
+  display:block;margin-top:4px;
+}
+
+/* scroll indicator */
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-line{
+  width:1px;height:48px;background:rgba(255,255,255,0.2);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:0.2;transform:scaleY(0.6);transform-origin:top}50%{opacity:0.6;transform:scaleY(1)}}
+
+/* ─── TICKER ─────────────────────────── */
+.ticker{
+  background:var(--dark-2);
+  border-top:1px solid var(--line-lt);
+  border-bottom:1px solid var(--line-lt);
+  overflow:hidden;padding:0;
+}
+.ticker-track{
+  display:flex;width:max-content;
+  animation:ticker 28s linear infinite;
+}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 52px;white-space:nowrap;
+  border-right:1px solid var(--line-lt);
+}
+.ticker-num{
+  font-family:var(--serif);font-size:19px;font-weight:600;
+  color:var(--gold-lt);
+}
+.ticker-label{
+  font-size:11px;font-weight:300;letter-spacing:0.08em;
+  text-transform:uppercase;color:rgba(255,255,255,0.38);
+}
+
+/* ─── INTRO SPLIT ────────────────────── */
+.intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:520px;
+}
+.intro-text{
+  padding:88px 80px 88px 80px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--white);
+}
+.section-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;
+}
+.intro-text h2{
+  font-family:var(--serif);font-size:clamp(36px,3.5vw,52px);
+  font-weight:600;line-height:1.1;color:var(--ink);
+  letter-spacing:-0.01em;margin-bottom:24px;
+}
+.intro-text h2 em{font-style:italic;color:var(--gold)}
+.intro-text p{
+  font-size:16px;font-weight:300;color:var(--slate);
+  line-height:1.85;margin-bottom:16px;max-width:440px;
+}
+.intro-text p:last-of-type{margin-bottom:36px}
+.intro-photo{
+  position:relative;overflow:hidden;
+  background:var(--cream);min-height:480px;
+}
+.intro-photo-inner{
+  position:absolute;inset:0;
+  /* replace with: background:url('bryan-seated.jpg') center/cover no-repeat; */
+  background:linear-gradient(160deg,#d4cec6 0%,#c0b9b0 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-tag{
+  position:absolute;bottom:24px;left:24px;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;
+  text-transform:uppercase;color:rgba(0,0,0,0.28);
+  background:rgba(255,255,255,0.5);padding:5px 12px;
+  backdrop-filter:blur(4px);
+}
+
+/* ─── WHO I WORK WITH — editorial ────── */
+.who{background:var(--dark);padding:96px 0}
+.who-inner{max-width:1240px;margin:0 auto;padding:0 72px}
+.who-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;
+  align-items:end;margin-bottom:72px;
+}
+.who-head h2{
+  font-family:var(--serif);font-size:clamp(38px,4vw,58px);
+  font-weight:600;color:var(--white);line-height:1.05;
+  letter-spacing:-0.01em;
+}
+.who-head h2 em{font-style:italic;color:var(--gold-lt)}
+.who-head-right p{
+  font-size:16px;font-weight:300;color:rgba(255,255,255,0.42);
+  line-height:1.85;
+}
+
+/* editorial alternating rows */
+.who-rows{display:flex;flex-direction:column;gap:2px}
+.who-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:var(--dark-2);
+  transition:background 0.25s;
+  min-height:360px;
+}
+.who-row:hover{background:var(--dark-3)}
+.who-row.flip .who-row-img{order:2}
+.who-row.flip .who-row-body{order:1}
+
+.who-row-img{
+  position:relative;overflow:hidden;
+  min-height:340px;
+}
+.who-row-img-inner{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.ri-re{background:linear-gradient(135deg,#1c2e2e 0%,#243838 100%)}
+.ri-cpa{background:linear-gradient(135deg,#1c2030 0%,#242838 100%)}
+.ri-atty{background:linear-gradient(135deg,#201c2c 0%,#2c2438 100%)}
+.ri-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.15);
+}
+
+.who-row-body{
+  padding:56px 64px;display:flex;flex-direction:column;justify-content:center;
+}
+.who-row-idx{
+  font-family:var(--serif);font-size:64px;font-weight:400;
+  color:rgba(255,255,255,0.05);line-height:1;
+  margin-bottom:4px;letter-spacing:-0.03em;user-select:none;
+}
+.who-row-title{
+  font-family:var(--serif);font-size:28px;font-weight:600;
+  color:var(--white);margin-bottom:14px;line-height:1.2;
+}
+.who-row-body p{
+  font-size:15px;font-weight:300;color:rgba(255,255,255,0.48);
+  line-height:1.85;margin-bottom:32px;max-width:380px;
+}
+.who-row-actions{display:flex;gap:16px;align-items:center}
+.btn-gold-sm{
+  background:var(--gold);color:var(--white);
+  padding:10px 26px;font-size:11px;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;
+  transition:background 0.2s;display:inline-block;
+}
+.btn-gold-sm:hover{background:var(--gold-lt)}
+.btn-text{
+  font-size:12px;font-weight:400;letter-spacing:0.06em;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);
+  border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:1px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.btn-text:hover{color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.35)}
+
+/* ─── WHAT MAKES BRYAN DIFFERENT ──────── */
+.diff{background:var(--warm);padding:96px 0}
+.diff-inner{max-width:1240px;margin:0 auto;padding:0 72px}
+.diff-head{
+  display:grid;grid-template-columns:5fr 4fr;gap:72px;
+  align-items:end;margin-bottom:64px;
+}
+.diff-head h2{
+  font-family:var(--serif);font-size:clamp(36px,4vw,54px);
+  font-weight:600;color:var(--ink);line-height:1.08;letter-spacing:-0.01em;
+}
+.diff-head h2 em{font-style:italic;color:var(--gold)}
+.diff-head p{
+  font-size:16px;font-weight:300;color:var(--slate);line-height:1.85;
+}
+
+.diff-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;background:var(--line-dk);
+}
+.diff-card{
+  background:var(--white);padding:48px 48px;
+  transition:background 0.2s;
+}
+.diff-card:hover{background:var(--cream)}
+.diff-n{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:18px;display:block;
+}
+.diff-title{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  color:var(--ink);line-height:1.3;margin-bottom:14px;
+}
+.diff-body{
+  font-size:14.5px;font-weight:300;color:var(--slate);line-height:1.85;
+}
+
+/* ─── 10,001 HOURS ───────────────────── */
+.hours{
+  background:var(--dark);padding:0;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.hours-text{
+  padding:100px 80px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hours-text h2{
+  font-family:var(--serif);
+  font-size:clamp(40px,4.2vw,60px);
+  font-weight:600;color:var(--white);
+  line-height:1.05;letter-spacing:-0.02em;
+  margin-bottom:26px;
+}
+.hours-text h2 em{font-style:italic;color:var(--gold-lt)}
+.hours-text p{
+  font-size:16px;font-weight:300;color:rgba(255,255,255,0.48);
+  line-height:1.85;margin-bottom:20px;max-width:460px;
+}
+.hours-list{
+  list-style:none;margin:8px 0 32px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.hours-list li{
+  display:flex;align-items:center;gap:14px;
+  font-size:14.5px;font-weight:300;color:rgba(255,255,255,0.6);
+}
+.chk{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  border:1px solid rgba(184,137,42,0.5);
+  background:rgba(184,137,42,0.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.chk svg{width:9px;height:9px;stroke:var(--gold-lt);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.pullquote{
+  margin:8px 0 32px;
+  padding:22px 28px;
+  border-left:2px solid var(--gold);
+  background:rgba(184,137,42,0.08);
+}
+.pullquote p{
+  font-family:var(--serif);font-size:20px;font-style:italic;
+  font-weight:400;color:var(--white);line-height:1.6;
+}
+.pullquote cite{
+  display:block;margin-top:10px;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  font-style:normal;
+}
+
+.hours-visual{
+  position:relative;overflow:hidden;
+  background:var(--dark-2);
+  display:flex;align-items:center;justify-content:center;
+  min-height:560px;
+}
+.hours-visual::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(184,137,42,0.08) 0%,transparent 70%);
+}
+.hours-bg-text{
+  position:absolute;
+  font-family:var(--serif);font-size:220px;font-weight:700;
+  color:rgba(255,255,255,0.025);
+  line-height:1;user-select:none;letter-spacing:-0.05em;
+  top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;
+}
+.hours-badge{position:relative;z-index:2;text-align:center;padding:48px}
+.badge-big{
+  font-family:var(--serif);font-size:110px;font-weight:600;
+  color:var(--gold-lt);line-height:1;letter-spacing:-0.04em;display:block;
+}
+.badge-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  display:block;margin-top:14px;
+}
+.badge-desc{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,0.3);
+  margin-top:22px;line-height:1.75;max-width:200px;
+}
+
+/* ─── WEBINAR ─────────────────────────── */
+.webinar{background:var(--cream);padding:96px 0}
+.webinar-inner{
+  max-width:1240px;margin:0 auto;padding:0 72px;
+  display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center;
+}
+.webinar-visual{
+  position:relative;overflow:hidden;
+  aspect-ratio:4/3;background:var(--dark);
+}
+.webinar-visual-inner{
+  position:absolute;inset:0;
+  /* replace with: background:url('bryan-speaking.jpg') center/cover no-repeat; */
+  background:linear-gradient(135deg,var(--dark) 0%,var(--dark-3) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.play-btn{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(184,137,42,0.15);
+  border:1px solid rgba(184,137,42,0.35);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background 0.2s,border-color 0.2s;
+}
+.play-btn:hover{background:rgba(184,137,42,0.3);border-color:var(--gold-lt)}
+.play-btn svg{width:20px;height:20px;fill:var(--gold-lt);margin-left:3px}
+.webinar-tag-pill{
+  position:absolute;top:20px;left:20px;
+  background:var(--gold);color:var(--white);
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;
+  text-transform:uppercase;padding:6px 14px;
+}
+
+.webinar-text h2{
+  font-family:var(--serif);font-size:clamp(32px,3.2vw,48px);
+  font-weight:600;color:var(--ink);line-height:1.1;
+  letter-spacing:-0.01em;margin-bottom:18px;
+}
+.webinar-text h2 em{font-style:italic;color:var(--gold)}
+.webinar-intro{
+  font-size:16px;font-weight:300;color:var(--slate);
+  line-height:1.85;margin-bottom:28px;
+}
+.webinar-outcomes{
+  list-style:none;margin-bottom:36px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.webinar-outcomes li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14.5px;font-weight:300;color:var(--slate);line-height:1.65;
+}
+.w-chk{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:3px;
+  border:1px solid rgba(184,137,42,0.4);
+  background:rgba(184,137,42,0.08);
+  display:flex;align-items:center;justify-content:center;
+}
+.w-chk svg{width:8px;height:8px;stroke:var(--gold);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.webinar-note{
+  font-size:12px;font-weight:300;color:var(--muted);
+  margin-top:14px;font-style:italic;
+}
+
+/* ─── RECENT CONTENT ─────────────────── */
+.content{background:var(--white);padding:96px 0}
+.content-inner{max-width:1240px;margin:0 auto;padding:0 72px}
+.content-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;
+  align-items:end;margin-bottom:56px;
+}
+.content-head h2{
+  font-family:var(--serif);font-size:clamp(34px,3.5vw,50px);
+  font-weight:600;color:var(--ink);line-height:1.1;letter-spacing:-0.01em;
+}
+.content-head h2 em{font-style:italic}
+.content-head p{
+  font-size:16px;font-weight:300;color:var(--slate);line-height:1.85;
+}
+.content-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--line-dk);margin-bottom:48px;
+}
+.content-card{
+  background:var(--white);overflow:hidden;
+  transition:background 0.2s;cursor:pointer;
+}
+.content-card:hover{background:var(--warm)}
+.content-thumb{
+  aspect-ratio:16/9;position:relative;overflow:hidden;
+}
+.ct1{background:linear-gradient(135deg,#111e28 0%,#1a2d3a 100%)}
+.ct2{background:linear-gradient(135deg,#151e15 0%,#1e2e1e 100%)}
+.ct3{background:linear-gradient(135deg,#1e1810 0%,#2a2218 100%)}
+.thumb-inner{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 50%);
+}
+.thumb-text{
+  position:absolute;bottom:16px;left:16px;right:16px;
+  font-size:13px;font-weight:500;color:var(--white);
+  line-height:1.35;text-shadow:0 1px 4px rgba(0,0,0,0.5);
+}
+.content-info{padding:22px 24px 28px}
+.content-title{
+  font-family:var(--serif);font-size:18px;font-weight:600;
+  color:var(--ink);margin-bottom:6px;line-height:1.3;
+}
+.content-meta{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+.content-footer{text-align:center}
+.btn-outline-dk{
+  display:inline-block;background:transparent;
+  border:1px solid rgba(0,0,0,0.18);color:var(--ink);
+  padding:13px 40px;font-size:11px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;
+  transition:background 0.2s,border-color 0.2s;cursor:pointer;
+}
+.btn-outline-dk:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+
+/* ─── FOOTER ─────────────────────────── */
+footer{background:var(--dark);padding:72px 0 0}
+.footer-top{
+  max-width:1240px;margin:0 auto;padding:0 72px 64px;
+  display:grid;grid-template-columns:2.5fr 1fr 1fr 1.5fr;gap:64px;
+  border-bottom:1px solid var(--line-lt);
+}
+.footer-brand-name{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  color:var(--white);margin-bottom:12px;
+}
+.footer-brand-name span{color:var(--gold-lt)}
+.footer-tagline{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,0.32);
+  line-height:1.75;max-width:240px;margin-bottom:28px;
+}
+.footer-lic{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.12em;
+  color:rgba(255,255,255,0.15);line-height:1.9;text-transform:uppercase;
+}
+.footer-col-title{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,0.38);
+  transition:color 0.2s;
+}
+.footer-col ul li a:hover{color:rgba(255,255,255,0.8)}
+.footer-contact-item{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,0.38);
+  line-height:1.8;
+}
+.footer-contact-item a{transition:color 0.2s}
+.footer-contact-item a:hover{color:rgba(255,255,255,0.8)}
+.footer-social{display:flex;gap:10px;margin-top:22px}
+.social-tag{
+  font-size:11px;font-weight:400;letter-spacing:0.06em;
+  color:rgba(255,255,255,0.35);text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.1);padding:6px 16px;
+  transition:border-color 0.2s,color 0.2s;
+}
+.social-tag:hover{border-color:rgba(255,255,255,0.35);color:rgba(255,255,255,0.7)}
+.footer-bottom{
+  max-width:1240px;margin:0 auto;
+  padding:22px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-copy{
+  font-size:11px;font-weight:300;color:rgba(255,255,255,0.18);letter-spacing:0.03em;
+}
+.footer-wm{
+  font-family:var(--serif);font-size:48px;font-weight:600;
+  color:rgba(255,255,255,0.03);letter-spacing:-0.02em;user-select:none;
+}
+
+/* ─── ANIMATION ─────────────────────── */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bryan <span>Knows</span> Lending</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Webinar</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#" class="nav-cta-btn">Contact Bryan</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo">
+    <!-- PHOTO PLACEHOLDER — replace with:
+         <img src="bryan-hero.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top"> -->
+    <div class="hero-placeholder-figure">
+      <svg viewBox="0 0 300 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="150" cy="90" rx="68" ry="76" fill="white"/>
+        <path d="M30 560 C30 360 60 300 150 292 C240 300 270 360 270 560Z" fill="white"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Bay Area Mortgage Lending</span>
+      <h1>28 Years.<br><em>Every Deal.</em><br>No Shortcuts.</h1>
+      <p class="hero-sub">Most lenders process loans. Bryan Russell solves problems. With nearly three decades in mortgage lending — and thousands of complex transactions — Bryan brings experience you can't fake and depth you can't manufacture.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Work With Bryan</a>
+        <a href="#" class="btn-ghost-light">Watch a Free Webinar</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">28</span>
+        <span class="hero-stat-label">Years in lending</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">200+</span>
+        <span class="hero-stat-label">Loan officers led</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">1,000s</span>
+        <span class="hero-stat-label">Transactions closed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-num">28</span><span class="ticker-label">Years in lending</span></div>
+    <div class="ticker-item"><span class="ticker-num">200+</span><span class="ticker-label">Loan officers led as broker of record</span></div>
+    <div class="ticker-item"><span class="ticker-num">Thousands</span><span class="ticker-label">of transactions closed</span></div>
+    <div class="ticker-item"><span class="ticker-num">0</span><span class="ticker-label">Scripts. Every conversation is live.</span></div>
+    <div class="ticker-item"><span class="ticker-num">28</span><span class="ticker-label">Years in lending</span></div>
+    <div class="ticker-item"><span class="ticker-num">200+</span><span class="ticker-label">Loan officers led as broker of record</span></div>
+    <div class="ticker-item"><span class="ticker-num">Thousands</span><span class="ticker-label">of transactions closed</span></div>
+    <div class="ticker-item"><span class="ticker-num">0</span><span class="ticker-label">Scripts. Every conversation is live.</span></div>
+    <div class="ticker-item"><span class="ticker-num">28</span><span class="ticker-label">Years in lending</span></div>
+    <div class="ticker-item"><span class="ticker-num">200+</span><span class="ticker-label">Loan officers led as broker of record</span></div>
+    <div class="ticker-item"><span class="ticker-num">Thousands</span><span class="ticker-label">of transactions closed</span></div>
+    <div class="ticker-item"><span class="ticker-num">0</span><span class="ticker-label">Scripts. Every conversation is live.</span></div>
+  </div>
+</div>
+
+<!-- INTRO SPLIT -->
+<div class="intro fade-in">
+  <div class="intro-text">
+    <span class="section-label">About Bryan</span>
+    <h2>The calls I have all day long — <em>that's what the world needs to see.</em></h2>
+    <p>Bryan Russell has been in mortgage lending for 28 years. Not doing the same deal over and over — running a brokerage of 200+ loan officers, solving everyone else's complicated cases on top of his own. That compounding experience is what separates him.</p>
+    <p>He doesn't wear a suit. He doesn't follow a script. He backs up before the paperwork and builds a real plan — for the first-time buyer who needs a roadmap and the multimillion-dollar investor who needs the deal structured right.</p>
+    <a href="#" class="btn-primary">Learn About Bryan</a>
+  </div>
+  <div class="intro-photo">
+    <div class="intro-photo-inner">
+      <!-- Replace with: <img src="bryan-office.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+      <div class="photo-tag">Photo: Bryan Russell</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO I WORK WITH -->
+<div class="who">
+  <div class="who-inner">
+    <div class="who-head fade-in">
+      <div>
+        <span class="section-label" style="color:var(--gold-lt)">Who I Work With</span>
+        <h2>Your clients deserve a lender who actually <em>knows the deal.</em></h2>
+      </div>
+      <div class="who-head-right">
+        <p>Bryan works exclusively with referral partners — real estate professionals and financial advisors who want a lender they can stake their reputation on. No consumer rate-shopping. No generic pitch decks.</p>
+      </div>
+    </div>
+
+    <div class="who-rows">
+      <!-- Row 1: Real Estate Agents -->
+      <div class="who-row fade-in">
+        <div class="who-row-img ri-re">
+          <div class="who-row-img-inner">
+            <!-- Replace with photo of Bryan with real estate agent -->
+            <span class="ri-label">Real estate agents</span>
+          </div>
+        </div>
+        <div class="who-row-body">
+          <div class="who-row-idx">01</div>
+          <h3 class="who-row-title">Real Estate Agents</h3>
+          <p>When your buyer calls, they need clarity — not just a rate quote. Bryan builds the full financial picture and helps you place the right buyer in the right home. First-time buyers or 1031 exchanges — he's handled it.</p>
+          <div class="who-row-actions">
+            <a href="#" class="btn-gold-sm">Work With Bryan</a>
+            <a href="#" class="btn-text">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: CPAs (flipped) -->
+      <div class="who-row flip fade-in">
+        <div class="who-row-img ri-cpa">
+          <div class="who-row-img-inner">
+            <span class="ri-label">CPAs &amp; enrolled agents</span>
+          </div>
+        </div>
+        <div class="who-row-body">
+          <div class="who-row-idx">02</div>
+          <h3 class="who-row-title">CPAs &amp; Enrolled Agents</h3>
+          <p>You already understand your client's finances. Bryan translates that into lending strategy — especially for self-employed, multi-entity, and complex income cases most lenders avoid.</p>
+          <div class="who-row-actions">
+            <a href="#" class="btn-gold-sm">Work With Bryan</a>
+            <a href="#" class="btn-text">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Attorneys -->
+      <div class="who-row fade-in">
+        <div class="who-row-img ri-atty">
+          <div class="who-row-img-inner">
+            <span class="ri-label">Attorneys &amp; trust planners</span>
+          </div>
+        </div>
+        <div class="who-row-body">
+          <div class="who-row-idx">03</div>
+          <h3 class="who-row-title">Attorneys &amp; Trust Planners</h3>
+          <p>Divorce, trusts, estate transfers, co-ownership structures — Bryan has navigated them all. When things get unusual, you want a lender who sees the full structure, not just the rate sheet.</p>
+          <div class="who-row-actions">
+            <a href="#" class="btn-gold-sm">Work With Bryan</a>
+            <a href="#" class="btn-text">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT MAKES BRYAN DIFFERENT -->
+<div class="diff">
+  <div class="diff-inner">
+    <div class="diff-head fade-in">
+      <div>
+        <span class="section-label">What Makes Bryan Different</span>
+        <h2>Most lenders see your deal.<br><em>Bryan sees your situation.</em></h2>
+      </div>
+      <p>Twenty-eight years — including thousands of complex cases solved for 200+ loan officers he oversaw as broker of record. He's seen nearly every scenario. The hard ones are the interesting ones.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card fade-in">
+        <span class="diff-n">01</span>
+        <div class="diff-title">He doesn't start with the paperwork</div>
+        <p class="diff-body">The first conversation isn't about documents. It's about your client's plan — how long they'll be in the property, where they want to be in ten years. That kind of discovery doesn't happen in most mortgage offices. It happens here.</p>
+      </div>
+      <div class="diff-card fade-in">
+        <span class="diff-n">02</span>
+        <div class="diff-title">He's worked the hard ones</div>
+        <p class="diff-body">Running a brokerage of 200+ loan officers means Bryan didn't just close his own transactions — he solved everyone else's complicated ones too. The exceptions, the edge cases, the deals with "hair on them." That experience compounds.</p>
+      </div>
+      <div class="diff-card fade-in">
+        <span class="diff-n">03</span>
+        <div class="diff-title">He talks directly to decision-makers</div>
+        <p class="diff-body">When a deal needs an exception, Bryan doesn't escalate to a manager and wait. He calls the head of underwriting at the lender — because he knows how to position a deal from the risk side, not just the borrower side.</p>
+      </div>
+      <div class="diff-card fade-in">
+        <span class="diff-n">04</span>
+        <div class="diff-title">He knows why, not just what</div>
+        <p class="diff-body">Most loan officers follow the checklist because someone told them to. Bryan follows it because he understands every condition, every requirement, and when to push back. If an underwriter's condition doesn't hold up, he'll say so — and usually wins.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10,001 HOURS -->
+<div class="hours">
+  <div class="hours-text fade-in">
+    <span class="section-label" style="color:var(--gold-lt)">The 10,001 Hours</span>
+    <h2>Not just experienced.<br><em>Obsessively thorough.</em></h2>
+    <p>They say 10,000 hours is mastery. Bryan passed that mark a long time ago. Between his own transactions and thousands of complex deals he's structured as broker of record, he's seen nearly every mortgage scenario possible.</p>
+    <ul class="hours-list">
+      <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Self-employed income structuring</li>
+      <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Multi-entity investors</li>
+      <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Complex "impossible" loans</li>
+    </ul>
+    <div class="pullquote">
+      <p>"I get up in front of 100 realtors and say, who has questions? I'm not terrified. Bring them on."</p>
+      <cite>— Bryan Russell, Bryan Knows Lending</cite>
+    </div>
+    <p>That confidence doesn't come from a script. It comes from 28 years of doing the work.</p>
+  </div>
+  <div class="hours-visual">
+    <div class="hours-bg-text">10,001</div>
+    <div class="hours-badge">
+      <span class="badge-big">10,001</span>
+      <span class="badge-label">Hours of expertise</span>
+      <p class="badge-desc">Mastery earned through volume, complexity, and two decades of doing the hard work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WEBINAR CTA -->
+<div class="webinar">
+  <div class="webinar-inner">
+    <div class="webinar-visual">
+      <div class="webinar-tag-pill">Free Webinar</div>
+      <div class="webinar-visual-inner">
+        <!-- Replace with: <img src="bryan-speaking.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="webinar-text fade-in">
+      <span class="section-label">Monthly Webinar</span>
+      <h2>The stuff your lender<br><em>isn't telling you.</em></h2>
+      <p class="webinar-intro">Once a month, Bryan opens up an hour to real estate professionals and financial partners who want to understand the mortgage process at a deeper level. No sales pitch. No upsell. Just the education Bryan wishes everyone in the room already had.</p>
+      <ul class="webinar-outcomes">
+        <li><span class="w-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>What lenders actually look at — and why most deals fall apart before they start</li>
+        <li><span class="w-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>How to spot a strong deal (and a weak one) before submitting</li>
+        <li><span class="w-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>The one conversation to have with your buyer before they tour a single house</li>
+        <li><span class="w-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Why the same income can qualify three different ways — and which way wins</li>
+      </ul>
+      <a href="#" class="btn-primary">Reserve Your Spot</a>
+      <p class="webinar-note">Can't make it live? Recordings are available after each session.</p>
+    </div>
+  </div>
+</div>
+
+<!-- RECENT CONTENT -->
+<div class="content">
+  <div class="content-inner">
+    <div class="content-head fade-in">
+      <div>
+        <span class="section-label">Recent Resources</span>
+        <h2>Straight talk on lending.<br><em>No fluff.</em></h2>
+      </div>
+      <p>Bryan posts what he knows — because the more you understand how this works, the better your clients are served. Real knowledge, not highlight reels.</p>
+    </div>
+    <div class="content-grid">
+      <div class="content-card fade-in">
+        <div class="content-thumb ct1">
+          <div class="thumb-overlay"></div>
+          <div class="thumb-text">The Hardest Part of Training</div>
+        </div>
+        <div class="content-info">
+          <div class="content-title">The Hardest Part of Training</div>
+          <div class="content-meta">Discipline · 4 min watch</div>
+        </div>
+      </div>
+      <div class="content-card fade-in">
+        <div class="content-thumb ct2">
+          <div class="thumb-overlay"></div>
+          <div class="thumb-text">Your Blueprint for Loan Approval</div>
+        </div>
+        <div class="content-info">
+          <div class="content-title">Your Blueprint for Loan Approval</div>
+          <div class="content-meta">Strategy · 6 min watch</div>
+        </div>
+      </div>
+      <div class="content-card fade-in">
+        <div class="content-thumb ct3">
+          <div class="thumb-overlay"></div>
+          <div class="thumb-text">Struggling to Qualify Alone?</div>
+        </div>
+        <div class="content-info">
+          <div class="content-title">Struggling to Qualify Alone?</div>
+          <div class="content-meta">Education · 5 min watch</div>
+        </div>
+      </div>
+    </div>
+    <div class="content-footer fade-in">
+      <a href="#" class="btn-outline-dk">See All Resources</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Bryan <span>Knows</span> Lending</div>
+      <p class="footer-tagline">Bay Area mortgage lending built on 28 years of doing the hard work.</p>
+      <div class="footer-lic">NMLS # [insert]<br>DRE # [insert]</div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-title">Navigation</span>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Webinar</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-title">Services</span>
+      <ul>
+        <li><a href="#">Real Estate Agents</a></li>
+        <li><a href="#">CPAs &amp; Advisors</a></li>
+        <li><a href="#">Attorneys</a></li>
+        <li><a href="#">Investors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-title">Contact</span>
+      <div class="footer-contact-item"><a href="tel:0001234567">000-123-4567</a></div>
+      <div class="footer-contact-item"><a href="mailto:support@bryanknowslending.com">support@bryanknowslending.com</a></div>
+      <div class="footer-social">
+        <a href="#" class="social-tag">LinkedIn</a>
+        <a href="#" class="social-tag">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Bryan Knows Lending. All rights reserved.</span>
+    <div class="footer-wm">BKL</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

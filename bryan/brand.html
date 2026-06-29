@@ -6,7 +6,7 @@
 <title>Bryan Knows Lending - Brand Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --sumi:#16130F;        /* warm near-black - dark sections, footer */
@@ -16,9 +16,9 @@
     --ink:#1A1714;         /* body text on light */
     --line:#D9D2C4;        /* hairline on light */
     --line-dk:#3A342B;     /* hairline on dark */
-    /* Display = stand-in (Oswald). Body = stand-in (Inter). Confirm real names from Figma. */
-    --display:'Oswald', 'Arial Narrow', sans-serif;
-    --body:'Inter', system-ui, sans-serif;
+    /* Display = BBH Bogle (licensed - falls back to Archivo if not installed locally). Body = Instrument Sans. */
+    --display:'BBH Bogle', 'Archivo', 'Arial', sans-serif;
+    --body:'Instrument Sans', system-ui, sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--washi);color:var(--ink);font-family:var(--body);line-height:1.55;
@@ -176,24 +176,24 @@
     <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Typography</span></div>
 
     <div class="type-row">
-      <div class="type-tag">Display<b>[confirm family]</b></div>
+      <div class="type-tag">Display<b>BBH Bogle</b></div>
       <div>
         <div class="samp-display-xl">The deals other lenders walk away from.</div>
-        <div class="samp-body" style="margin-top:10px">Heavy condensed grotesque, uppercase, tight tracking. Carries every headline and the big stat numbers. This is the voice of the brand - use it with confidence and restraint.</div>
+        <div class="samp-body" style="margin-top:10px">BBH Bogle, Regular (400), uppercase, 0% tracking. Carries every headline, the logo wordmark, the stat numbers, and button labels. This is the voice of the brand - chunky and confident, used with restraint.</div>
       </div>
     </div>
 
     <div class="type-row">
-      <div class="type-tag">Body<b>[confirm family]</b></div>
+      <div class="type-tag">Body<b>Instrument Sans</b></div>
       <div>
-        <div class="samp-body">Clean, readable sans for paragraphs and supporting copy. Comfortable size, open line-height, sentence or title case. Calm and editorial - never cramped, never competing with the display face.</div>
+        <div class="samp-body">Instrument Sans, Regular (400), Title Case, 20px / 30px line height. Paragraphs, subheads, and card copy. Calm and readable - never cramped, never competing with the display face.</div>
       </div>
     </div>
 
     <div class="type-row">
-      <div class="type-tag">Eyebrow / Label</div>
-      <div><div class="samp-eyebrow">Bay Area Mortgage Lending</div>
-        <div class="samp-body" style="margin-top:8px">Display face, small, wide letter-spacing, usually in Signal Red. Labels sections and CTAs.</div></div>
+      <div class="type-tag">Eyebrow / Label<b>Instrument Sans</b></div>
+      <div><div class="samp-eyebrow" style="color:#8a847a">Bay Area Mortgage Lending</div>
+        <div class="samp-body" style="margin-top:8px">Instrument Sans, uppercase, letter-spaced - sits above headlines as a section label. Ink on light, white on dark. (Red is saved for CTAs, tags, and numbers, not these labels.)</div></div>
     </div>
 
     <div class="type-row">
@@ -203,18 +203,19 @@
     </div>
 
     <table class="scale">
-      <thead><tr><th>Role</th><th>Treatment</th><th>Suggested size (desktop)</th></tr></thead>
+      <thead><tr><th>Role</th><th>Font</th><th>Size / Line</th><th>Case</th></tr></thead>
       <tbody>
-        <tr><td>Display XL</td><td>Hero headline, 10,001 numeral</td><td class="px">64 - 80px</td></tr>
-        <tr><td>H1 / Section</td><td>Section headlines, uppercase</td><td class="px">40 - 48px</td></tr>
-        <tr><td>H2 / Subhead</td><td>Sub-headlines</td><td class="px">28 - 32px</td></tr>
-        <tr><td>H3 / Card title</td><td>Card + block titles, uppercase</td><td class="px">18 - 22px</td></tr>
-        <tr><td>Body</td><td>Paragraph copy</td><td class="px">16 - 17px</td></tr>
-        <tr><td>Eyebrow / Label</td><td>Uppercase, tracked .2em</td><td class="px">12 - 13px</td></tr>
-        <tr><td>Button</td><td>Uppercase, tracked .08em</td><td class="px">14px</td></tr>
+        <tr><td>Hero headline</td><td>BBH Bogle</td><td class="px">90 / 88px</td><td>Uppercase</td></tr>
+        <tr><td>Logo wordmark</td><td>BBH Bogle</td><td class="px">40 / 41px</td><td>Uppercase</td></tr>
+        <tr><td>Section headline</td><td>BBH Bogle</td><td class="px">48 / 50px</td><td>Uppercase</td></tr>
+        <tr><td>Subhead</td><td>BBH Bogle</td><td class="px">28 / 32px</td><td>Title / Upper</td></tr>
+        <tr><td>Stat numeral</td><td>BBH Bogle</td><td class="px">90px</td><td>-</td></tr>
+        <tr><td>Card title</td><td>BBH Bogle</td><td class="px">22 / 26px</td><td>Uppercase</td></tr>
+        <tr><td>Body / card copy</td><td>Instrument Sans</td><td class="px">20 / 30px</td><td>Title case</td></tr>
+        <tr><td>Eyebrow / label</td><td>Instrument Sans</td><td class="px">14 / 18px</td><td>Uppercase</td></tr>
+        <tr><td>Button</td><td>BBH Bogle</td><td class="px">16px</td><td>Uppercase</td></tr>
       </tbody>
     </table>
-    <p class="note">Sizes are a recommended scale to confirm against the Figma build - swap in the exact values and font names before this goes to Bryan.</p>
   </section>
 
   <!-- COMPONENTS -->

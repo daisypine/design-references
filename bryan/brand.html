@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bryan Knows Lending - Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#16130F;        /* warm near-black - dark sections, footer */
+    --washi:#F2EEE5;       /* warm off-white - light sections */
+    --signal:#A00000;      /* the red - accent + CTAs only */
+    --walnut:#6E5A45;      /* wood band */
+    --ink:#1A1714;         /* body text on light */
+    --line:#D9D2C4;        /* hairline on light */
+    --line-dk:#3A342B;     /* hairline on dark */
+    /* Display = stand-in (Oswald). Body = stand-in (Inter). Confirm real names from Figma. */
+    --display:'Oswald', 'Arial Narrow', sans-serif;
+    --body:'Inter', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--washi);color:var(--ink);font-family:var(--body);line-height:1.55;
+       -webkit-font-smoothing:antialiased;padding:0 0 80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+  .display{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:1.02;font-weight:700}
+
+  /* ---- header ---- */
+  header{background:var(--sumi);color:var(--washi);padding:56px 0 48px;margin-bottom:64px}
+  .monogram{display:flex;align-items:center;gap:18px;margin-bottom:34px}
+  .mono-mark{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-.04em;
+             border:2px solid var(--washi);width:54px;height:54px;display:flex;align-items:center;
+             justify-content:center;line-height:1}
+  .mono-word{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:15px;
+             letter-spacing:.16em;line-height:1.25}
+  header h1{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(38px,7vw,72px);
+            line-height:.98;letter-spacing:.005em}
+  header .sub{margin-top:18px;max-width:560px;color:#C9C2B5;font-size:15px}
+  .eyebrow{color:var(--signal);font-family:var(--display);text-transform:uppercase;font-weight:600;
+           font-size:12px;letter-spacing:.22em;margin-bottom:14px}
+
+  /* ---- sections ---- */
+  section{margin-bottom:72px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:26px;
+            border-bottom:1px solid var(--line);padding-bottom:14px}
+  .sec-num{font-family:var(--display);font-weight:700;color:var(--signal);font-size:15px;letter-spacing:.05em}
+  .sec-title{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:22px;letter-spacing:.04em}
+
+  /* ---- colors ---- */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
+  .sw{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff}
+  .sw .chip{height:96px}
+  .sw .meta{padding:12px 14px}
+  .sw .nm{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.08em}
+  .sw .hex{font-size:12px;color:#6c665c;margin-top:3px;font-variant-numeric:tabular-nums}
+  .sw .use{font-size:11.5px;color:#8a847a;margin-top:7px;line-height:1.35}
+  .note{font-size:12.5px;color:#8a847a;margin-top:16px;border-left:2px solid var(--signal);padding-left:12px}
+
+  /* ---- type ---- */
+  .type-row{border-bottom:1px solid var(--line);padding:22px 0;display:grid;
+            grid-template-columns:130px 1fr;gap:24px;align-items:baseline}
+  .type-row:last-child{border-bottom:none}
+  .type-tag{font-size:11.5px;color:#8a847a;text-transform:uppercase;letter-spacing:.12em}
+  .type-tag b{display:block;color:var(--ink);font-size:12.5px;letter-spacing:.06em;margin-top:4px}
+  .samp-display-xl{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:52px;line-height:1}
+  .samp-h1{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:34px;line-height:1.02}
+  .samp-h2{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:24px;line-height:1.05}
+  .samp-h3{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:17px;letter-spacing:.04em}
+  .samp-body{font-size:16px;max-width:520px;color:#3a352e}
+  .samp-eyebrow{color:var(--signal);font-family:var(--display);text-transform:uppercase;font-weight:600;
+                font-size:12px;letter-spacing:.22em}
+  .samp-quote{font-style:italic;font-size:22px;line-height:1.3;max-width:460px;color:var(--ink)}
+
+  table.scale{width:100%;border-collapse:collapse;margin-top:24px;font-size:13.5px}
+  table.scale th,table.scale td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+  table.scale th{font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.1em;color:#6c665c;font-weight:600}
+  table.scale td:first-child{font-weight:600}
+  table.scale .px{font-variant-numeric:tabular-nums;color:var(--signal);font-weight:600}
+
+  /* ---- components ---- */
+  .btn-demo{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+  .btn{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:14px;letter-spacing:.08em;
+       padding:14px 26px;border:1px solid var(--signal);cursor:default}
+  .btn-primary{background:var(--signal);color:#fff}
+  .btn-secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-on-dark{background:transparent;color:#fff;border-color:#fff}
+  .dark-demo{background:var(--sumi);padding:24px;border-radius:2px;display:flex;gap:16px;flex-wrap:wrap}
+
+  /* ---- motif ---- */
+  .motif{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .step{display:flex;gap:18px;margin-bottom:22px}
+  .step-num{font-family:var(--display);font-weight:700;color:var(--signal);font-size:15px;
+            border:1px solid var(--signal);border-radius:50%;width:38px;height:38px;display:flex;
+            align-items:center;justify-content:center;flex-shrink:0}
+  .step-txt b{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.04em;display:block;margin-bottom:3px}
+  .step-txt span{font-size:13px;color:#6c665c}
+  .cadence{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+  .cadence>div{padding:16px 18px;font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.1em}
+  .cad-light{background:var(--washi);color:var(--ink)}
+  .cad-dark{background:var(--sumi);color:#fff}
+  .cad-wood{background:var(--walnut);color:#fff}
+
+  /* ---- do/don't ---- */
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .dd-col h4{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.06em;margin-bottom:12px;
+             padding-bottom:8px;border-bottom:2px solid}
+  .dd-do h4{border-color:var(--signal);color:var(--ink)}
+  .dd-dont h4{border-color:var(--line);color:#8a847a}
+  .dd ul{list-style:none}
+  .dd li{font-size:13.5px;padding:6px 0 6px 20px;position:relative;color:#3a352e}
+  .dd-do li::before{content:"+";position:absolute;left:0;color:var(--signal);font-weight:700}
+  .dd-dont li::before{content:"\00d7";position:absolute;left:0;color:#b3aca0;font-weight:700}
+
+  footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:#8a847a;
+         display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  @media(max-width:680px){
+    .wrap{padding:0 22px}
+    .type-row{grid-template-columns:1fr;gap:10px}
+    .motif,.dd{grid-template-columns:1fr}
+    .samp-display-xl{font-size:40px}
+  }
+  @media print{
+    body{background:#fff}
+    header{background:var(--sumi)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sw .chip,.btn,.step-num,.dark-demo,.cad-dark,.cad-wood{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="monogram">
+      <div class="mono-mark">B</div>
+      <div class="mono-word">Bryan<br>Knows<br>Lending</div>
+    </div>
+    <div class="eyebrow">Brand Guide</div>
+    <h1>The look,<br>kept consistent.</h1>
+    <p class="sub">A quick reference for color, type, and spacing so everything built under Bryan Knows Lending stays clean, disciplined, and recognizably his.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- COLORS -->
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">Color</span></div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#16130F"></div><div class="meta">
+        <div class="nm">Sumi</div><div class="hex">#16130F</div>
+        <div class="use">Dark sections, footer, hero overlays. The base.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F2EEE5"></div><div class="meta">
+        <div class="nm">Washi</div><div class="hex">#F2EEE5</div>
+        <div class="use">Light sections. Warm off-white, never stark.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#A00000"></div><div class="meta">
+        <div class="nm">Signal Red</div><div class="hex">#A00000</div>
+        <div class="use">Accent + CTAs only. The single pop - used sparingly.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6E5A45"></div><div class="meta">
+        <div class="nm">Walnut</div><div class="hex">#6E5A45</div>
+        <div class="use">Wood band moments. Warmth between dark and light.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1A1714"></div><div class="meta">
+        <div class="nm">Ink</div><div class="hex">#1A1714</div>
+        <div class="use">Body text on light backgrounds.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #e3ddd2"></div><div class="meta">
+        <div class="nm">White</div><div class="hex">#FFFFFF</div>
+        <div class="use">Text and detail on dark + walnut.</div></div></div>
+    </div>
+    <p class="note">Red carries weight precisely because it's rare - one or two moments per screen, never a flood. Dark and wood do the warming; red does the pointing.</p>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Typography</span></div>
+
+    <div class="type-row">
+      <div class="type-tag">Display<b>[confirm family]</b></div>
+      <div>
+        <div class="samp-display-xl">The deals other lenders walk away from.</div>
+        <div class="samp-body" style="margin-top:10px">Heavy condensed grotesque, uppercase, tight tracking. Carries every headline and the big stat numbers. This is the voice of the brand - use it with confidence and restraint.</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-tag">Body<b>[confirm family]</b></div>
+      <div>
+        <div class="samp-body">Clean, readable sans for paragraphs and supporting copy. Comfortable size, open line-height, sentence or title case. Calm and editorial - never cramped, never competing with the display face.</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-tag">Eyebrow / Label</div>
+      <div><div class="samp-eyebrow">Bay Area Mortgage Lending</div>
+        <div class="samp-body" style="margin-top:8px">Display face, small, wide letter-spacing, usually in Signal Red. Labels sections and CTAs.</div></div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-tag">Accent / Quote</div>
+      <div><div class="samp-quote">"I get up in front of 100 realtors and say, who has questions? Bring them on."</div>
+        <div class="samp-body" style="margin-top:8px">Italic, reserved for pull-quotes in Bryan's voice. The human warmth that keeps it from feeling corporate.</div></div>
+    </div>
+
+    <table class="scale">
+      <thead><tr><th>Role</th><th>Treatment</th><th>Suggested size (desktop)</th></tr></thead>
+      <tbody>
+        <tr><td>Display XL</td><td>Hero headline, 10,001 numeral</td><td class="px">64 - 80px</td></tr>
+        <tr><td>H1 / Section</td><td>Section headlines, uppercase</td><td class="px">40 - 48px</td></tr>
+        <tr><td>H2 / Subhead</td><td>Sub-headlines</td><td class="px">28 - 32px</td></tr>
+        <tr><td>H3 / Card title</td><td>Card + block titles, uppercase</td><td class="px">18 - 22px</td></tr>
+        <tr><td>Body</td><td>Paragraph copy</td><td class="px">16 - 17px</td></tr>
+        <tr><td>Eyebrow / Label</td><td>Uppercase, tracked .2em</td><td class="px">12 - 13px</td></tr>
+        <tr><td>Button</td><td>Uppercase, tracked .08em</td><td class="px">14px</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Sizes are a recommended scale to confirm against the Figma build - swap in the exact values and font names before this goes to Bryan.</p>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Buttons</span></div>
+    <div class="btn-demo">
+      <span class="btn btn-primary">Work With Bryan</span>
+      <span class="btn btn-secondary">Learn More</span>
+    </div>
+    <div class="dark-demo">
+      <span class="btn btn-primary">Reserve Your Spot</span>
+      <span class="btn btn-on-dark">Watch a Free Webinar</span>
+    </div>
+    <p class="note">Primary = solid Signal Red, white label. Secondary = outline only (ink on light, white on dark). One primary action per view; the red button is the thing you want clicked.</p>
+  </section>
+
+  <!-- MOTIF + LAYOUT -->
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Motif &amp; Layout</span></div>
+    <div class="motif">
+      <div>
+        <div class="step"><div class="step-num">01</div><div class="step-txt"><b>The line + number</b><span>Thin vertical line links numbered points - used only where order is real, like a process.</span></div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-txt"><b>Hairline rules</b><span>Fine lines divide sections and underline eyebrows. Nods to the wood battens.</span></div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-txt"><b>Negative space</b><span>Lots of air. The calm is the brand - tall, composed, unhurried.</span></div></div>
+      </div>
+      <div>
+        <div class="cadence">
+          <div class="cad-light">Washi - light</div>
+          <div class="cad-dark">Sumi - dark</div>
+          <div class="cad-light">Washi - light</div>
+          <div class="cad-wood">Walnut - accent moment</div>
+          <div class="cad-dark">Sumi - dark</div>
+        </div>
+        <p class="note" style="margin-top:14px">Alternate dark and light sections so the page breathes and the red lands on both. Wood appears as a rare warm beat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO / DON'T -->
+  <section>
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title">Do &amp; Don't</span></div>
+    <div class="dd">
+      <div class="dd-col dd-do">
+        <h4>Do</h4>
+        <ul>
+          <li>Use red like a brushstroke - decisive and occasional</li>
+          <li>Let wood and dark carry the warmth</li>
+          <li>Keep generous margins and quiet type</li>
+          <li>Reserve the italic for Bryan's real quotes</li>
+        </ul>
+      </div>
+      <div class="dd-col dd-dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Flood the page with red or use it for body text</li>
+          <li>Add clichéd Japanese decoration (torii, blossoms, brush fonts)</li>
+          <li>Crowd the layout or box everything in</li>
+          <li>Mix in a second accent color</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Bryan Knows Lending - Mini Brand Guide</span>
+    <span>Prepared by Kaizen Agency &middot; 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motor Body — 24/7 Towing, Roadside Assistance &amp; Auto Repair | San Jose, CA</title>
+<meta name="description" content="Motor Body has been towing San Jose since 1938. 24/7 towing, roadside assistance, lockouts, jump starts, fuel delivery and auto repair. Family-owned, three generations. Call (408) 993-9888.">
+
+<!--
+  ============================================================
+  MOTOR BODY — HOMEPAGE  (v3, Kaizen Agency)
+  ============================================================
+  CLAIMS PENDING NICK'S CONFIRMATION — search "PENDING:"
+      - "Since 1938" (archive: Motor Body Co. founded 1938,
+        acquired by Alongi Bros in the 1970s)
+      - Phone / address / hours under the new name
+      - Hiring benefits (401k match, PTO, medical) - from old site
+      NOT included until confirmed: AAA approval, "largest AAA
+      contractor," fleet size (40+ vs 35), CTTA, ASE, 2008 award.
+
+  LOGO: header uses images/motorbody-wordmark-white.png - the real
+      mark pulled from the employment PDF. Low-res (214x58), so it's
+      shown small to stay crisp. Replace with vector once redrawn.
+
+  FORM: Netlify Forms -> dashboard -> Forms -> motorbody-contact
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Warmer, more rustic take on the blue + yellow */
+    --navy:#123262;
+    --navy-deep:#0B1E3D;
+    --navy-ink:#071630;
+    --gold:#E8A317;
+    --gold-bright:#F7BC3E;
+    --gold-deep:#B87D0A;
+    --cream:#F7F3EA;
+    --ink:#1A1A1C;
+    --slate:#6A6558;
+    --line:#DAD3C4;
+    --maxw:1160px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Barlow",system-ui,-apple-system,sans-serif;
+    color:var(--ink);background:var(--cream);
+    line-height:1.58;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3{font-family:"Barlow Condensed",sans-serif;font-weight:800;line-height:.98;
+    letter-spacing:.01em;text-transform:uppercase;margin:0;}
+
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+    outline:3px solid var(--gold);outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+
+  /* ---- Buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:9px;
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;font-size:1.05rem;padding:13px 26px;border-radius:4px;border:0;cursor:pointer;
+    transition:transform .15s ease,box-shadow .15s ease,background .15s ease;}
+  .btn-gold{background:var(--gold);color:var(--navy-ink);box-shadow:0 3px 0 0 var(--gold-deep);}
+  .btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 5px 0 0 var(--gold-deep);}
+  .btn-gold:active{transform:translateY(2px);box-shadow:0 1px 0 0 var(--gold-deep);}
+  .btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(0,0,0,.22);}
+  .btn-navy{background:var(--navy-ink);color:#fff;box-shadow:0 3px 0 0 rgba(0,0,0,.35);}
+  .btn-navy:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 5px 0 0 rgba(0,0,0,.35);}
+  .btn svg{width:18px;height:18px;flex:none;}
+
+  /* ---- Utility bar ---- */
+  .util{background:var(--navy-ink);color:#fff;font-size:.92rem;}
+  .util .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;align-items:center;justify-content:center;
+    padding-top:9px;padding-bottom:9px;}
+  .util a,.util span{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.88);}
+  .util a:hover{color:var(--gold);}
+  .util .ic{color:var(--gold);display:inline-flex;}
+  .util .ic svg{width:15px;height:15px;}
+
+  /* ---- Header ---- */
+  header.nav{position:sticky;top:0;z-index:40;background:var(--navy);
+    border-bottom:3px solid var(--gold);box-shadow:0 2px 16px rgba(7,22,48,.18);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;}
+  .brand{display:flex;flex-direction:column;gap:5px;}
+  .brand img{height:34px;width:auto;}
+  .brand .est{font-family:"Barlow";font-weight:700;font-size:.6rem;letter-spacing:.3em;
+    color:var(--gold);text-transform:uppercase;}
+
+  /* ---- Hero ---- */
+  .hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;}
+  .hero .bg{position:absolute;inset:0;z-index:-3;}
+  .hero .bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.05);}
+  .hero .scrim{position:absolute;inset:0;z-index:-2;
+    background:linear-gradient(100deg,rgba(7,22,48,.97) 0%,rgba(18,50,98,.93) 44%,rgba(11,30,61,.62) 74%,rgba(11,30,61,.4) 100%);}
+  .hero .stripes{position:absolute;inset:0;z-index:-1;opacity:.09;pointer-events:none;
+    background:repeating-linear-gradient(-45deg,var(--gold) 0 20px,transparent 20px 60px);
+    mask-image:linear-gradient(90deg,transparent 48%,#000);-webkit-mask-image:linear-gradient(90deg,transparent 48%,#000);}
+  .hero .wrap{position:relative;padding-top:82px;padding-bottom:90px;}
+
+  .seal{display:inline-flex;align-items:center;gap:12px;padding:8px 18px 8px 14px;margin-bottom:24px;
+    border:2px solid var(--gold);border-radius:3px;background:rgba(232,163,23,.1);}
+  .seal .yr{font-family:"Barlow Condensed";font-weight:800;font-size:1.5rem;color:var(--gold);line-height:1;}
+  .seal .txt{font-family:"Barlow";font-weight:700;font-size:.68rem;letter-spacing:.2em;
+    text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.35;}
+
+  .hero h1{font-size:clamp(2.8rem,6.6vw,5.2rem);max-width:15ch;text-shadow:0 2px 26px rgba(0,0,0,.4);}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero p.lede{font-size:1.2rem;max-width:52ch;margin:22px 0 6px;color:rgba(255,255,255,.9);}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+  .hero .trust{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:.9rem;color:rgba(255,255,255,.72);}
+  .hero .trust b{color:#fff;font-weight:600;}
+  .hero .trust .dot{color:var(--gold);}
+
+  /* ---- Section furniture ---- */
+  .eyebrow{font-family:"Barlow";font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+    font-size:.78rem;color:var(--gold-deep);display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .eyebrow::before{content:"";width:32px;height:3px;background:var(--gold);display:inline-block;flex:none;}
+  .sec-head{text-align:center;margin-bottom:44px;}
+  .sec-head .eyebrow{justify-content:center;}
+  .sec-head h2{font-size:clamp(2rem,4vw,2.9rem);color:var(--navy);}
+  .sec-head p{color:var(--slate);max-width:60ch;margin:12px auto 0;font-size:1.05rem;}
+
+  /* ---- Services ---- */
+  .services{background:#fff;border-top:1px solid var(--line);}
+  .services .wrap{padding-top:74px;padding-bottom:74px;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:44px;}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease;}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(18,50,98,.16);}
+  .card .shot{position:relative;height:184px;overflow:hidden;background:var(--navy);}
+  .card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:saturate(.8);}
+  .card:hover .shot img{transform:scale(1.06);}
+  .card .shot::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(7,22,48,.05) 45%,rgba(7,22,48,.6) 100%);}
+  .card .shot .badge{position:absolute;left:0;bottom:0;z-index:2;background:var(--gold);color:var(--navy-ink);
+    display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-top-right-radius:6px;}
+  .card .shot .badge svg{width:24px;height:24px;}
+  .card .body{padding:22px 24px 26px;}
+  .card h3{font-size:1.45rem;color:var(--navy);margin-bottom:8px;}
+  .card p{margin:0;color:var(--slate);font-size:1rem;}
+
+  .svc-list{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:32px 34px;}
+  .svc-list h3{font-size:1.3rem;color:var(--navy);margin-bottom:18px;}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 26px;list-style:none;padding:0;margin:0;}
+  .svc-grid li{display:flex;align-items:flex-start;gap:10px;font-size:1rem;color:var(--ink);}
+  .svc-grid li::before{content:"";flex:none;width:7px;height:7px;margin-top:9px;
+    background:var(--gold);transform:rotate(45deg);}
+
+  /* ---- Story ---- */
+  .story{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .story::before{content:"";position:absolute;inset:0;opacity:.07;
+    background:repeating-linear-gradient(-45deg,var(--gold) 0 20px,transparent 20px 60px);}
+  .story .wrap{position:relative;padding-top:76px;padding-bottom:76px;
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .story .eyebrow{color:var(--gold);}
+  .story h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:18px;}
+  .story h2 em{font-style:normal;color:var(--gold);}
+  .story p{color:rgba(255,255,255,.86);margin:0 0 14px;font-size:1.05rem;}
+  .gens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;}
+  .gens li{display:flex;gap:18px;padding:16px 0;border-top:1px solid rgba(255,255,255,.14);}
+  .gens li:last-child{border-bottom:1px solid rgba(255,255,255,.14);}
+  .gens .num{font-family:"Barlow Condensed";font-weight:800;font-size:1.6rem;color:var(--gold);
+    line-height:1;flex:none;width:38px;}
+  .gens .who{font-weight:600;color:#fff;}
+  .gens .what{color:rgba(255,255,255,.66);font-size:.95rem;}
+
+  /* ---- Hiring ---- */
+  .hiring{position:relative;overflow:hidden;isolation:isolate;background:var(--navy-ink);}
+  .hiring .bg{position:absolute;inset:0;z-index:-2;}
+  .hiring .bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%;filter:saturate(.7);}
+  .hiring .scrim{position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(90deg,rgba(232,163,23,.97) 0%,rgba(232,163,23,.94) 48%,rgba(232,163,23,.35) 80%,rgba(232,163,23,.08) 100%);}
+  .hiring .wrap{position:relative;padding-top:64px;padding-bottom:64px;color:var(--navy-ink);}
+  .hiring .kicker{font-family:"Barlow";font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    font-size:.78rem;display:inline-flex;align-items:center;gap:9px;margin-bottom:10px;}
+  .hiring .kicker .pip{width:9px;height:9px;border-radius:50%;background:#B3261E;display:inline-block;
+    animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(179,38,30,.6);}70%{box-shadow:0 0 0 10px rgba(179,38,30,0);}100%{box-shadow:0 0 0 0 rgba(179,38,30,0);}}
+  .hiring h2{font-size:clamp(1.9rem,4vw,2.8rem);max-width:20ch;}
+  .hiring p.sub{margin:12px 0 0;font-weight:500;max-width:52ch;}
+  .perks{list-style:none;padding:0;margin:26px 0 30px;display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 30px;max-width:640px;}
+  .perks li{display:flex;align-items:flex-start;gap:10px;font-weight:500;font-size:1rem;}
+  .perks li svg{width:17px;height:17px;flex:none;margin-top:5px;}
+  .perks li em{font-style:normal;font-weight:700;}
+
+  /* ---- Areas ---- */
+  .areas{background:#fff;border-top:1px solid var(--line);}
+  .areas .wrap{padding-top:70px;padding-bottom:70px;}
+  .area-chips{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .area-chips span{background:var(--cream);border:1px solid var(--line);border-radius:3px;
+    padding:9px 18px;font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;font-size:1.05rem;color:var(--navy);}
+  .area-note{text-align:center;color:var(--slate);margin-top:26px;font-size:1rem;}
+
+  /* ---- Contact ---- */
+  .contact{background:var(--cream);border-top:1px solid var(--line);}
+  .contact .wrap{padding-top:76px;padding-bottom:76px;display:grid;grid-template-columns:1fr 1.05fr;gap:52px;}
+  .contact h2{font-size:clamp(2rem,4vw,2.9rem);color:var(--navy);}
+  .contact .lede{color:var(--slate);font-size:1.06rem;margin:14px 0 28px;max-width:44ch;}
+  .info-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;}
+  .info-list li{display:flex;gap:14px;align-items:flex-start;}
+  .info-list .ic{width:40px;height:40px;flex:none;border-radius:5px;background:var(--navy);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;}
+  .info-list .ic svg{width:19px;height:19px;}
+  .info-list .lbl{font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--navy);font-size:1.05rem;line-height:1.1;}
+  .info-list .val{color:var(--slate);font-size:1rem;}
+  .info-list a.val:hover{color:var(--navy);}
+
+  .form-card{background:var(--navy);border-radius:8px;padding:34px;color:#fff;
+    box-shadow:0 24px 50px rgba(11,30,61,.26);border-top:4px solid var(--gold);}
+  .form-card h3{font-size:1.65rem;margin-bottom:4px;}
+  .form-card .fnote{color:rgba(255,255,255,.68);font-size:.94rem;margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-family:"Barlow Condensed";font-weight:600;text-transform:uppercase;
+    letter-spacing:.05em;font-size:.92rem;margin-bottom:6px;color:rgba(255,255,255,.9);}
+  .field label .req{color:var(--gold);}
+  .field input,.field select,.field textarea{
+    width:100%;padding:12px 14px;border-radius:5px;border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.07);color:#fff;font-family:"Barlow";font-size:1rem;}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.42);}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23E8A317'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+  .field select option{background:var(--navy-deep);color:#fff;}
+  .field textarea{resize:vertical;min-height:96px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px;font-size:1.1rem;}
+
+  /* ---- Footer ---- */
+  footer{background:var(--navy-ink);color:rgba(255,255,255,.7);}
+  footer .wrap{padding-top:56px;padding-bottom:30px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px;}
+  footer .brand img{height:30px;margin-bottom:12px;}
+  footer p{margin:0 0 10px;font-size:.95rem;}
+  footer h4{font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:#fff;font-size:1.05rem;margin:0 0 12px;}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;font-size:.95rem;}
+  footer a:hover{color:var(--gold);}
+  .soon{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:600;margin-top:8px;font-size:.92rem;}
+  .soon .pip{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+  .footbar{border-top:1px solid rgba(255,255,255,.12);}
+  .footbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+    padding-top:16px;padding-bottom:22px;font-size:.85rem;}
+
+  /* ---- Responsive ---- */
+  @media (max-width:920px){
+    .cards{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .story .wrap{grid-template-columns:1fr;gap:36px;}
+    .contact .wrap{grid-template-columns:1fr;gap:36px;}
+    footer .wrap{grid-template-columns:1fr;gap:26px;}
+    .hero .scrim{background:linear-gradient(180deg,rgba(7,22,48,.95) 0%,rgba(11,30,61,.9) 60%,rgba(11,30,61,.84) 100%);}
+    .hiring .scrim{background:linear-gradient(180deg,rgba(232,163,23,.97) 0%,rgba(232,163,23,.9) 100%);}
+  }
+  @media (max-width:560px){
+    .util .wrap{gap:5px 18px;font-size:.82rem;}
+    .nav .wrap .btn{display:none;}
+    .svc-grid{grid-template-columns:1fr;}
+    .perks{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .hero .wrap{padding-top:56px;padding-bottom:62px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Utility bar ===== PENDING: confirm phone / hours / address -->
+<div class="util">
+  <div class="wrap">
+    <a href="tel:+14089939888"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.24 1z"/></svg></span> (408) 993-9888</a>
+    <span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> Office Mon–Fri 8AM–5PM · Towing 24/7</span>
+    <span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg></span> 455 Sunol St., San Jose, CA 95126</span>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Motor Body home">
+      <img src="images/motorbody-wordmark-white.png" alt="Motor Body Company">
+      <span class="est">San Jose · Est. 1938</span>
+    </a>
+    <a class="btn btn-gold" href="tel:+14089939888">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.24 1z"/></svg>
+      Call 24/7
+    </a>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="bg"><img src="images/hero-tow.jpg" alt="Motor Body tow truck hauling a car through San Jose"></div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="stripes" aria-hidden="true"></div>
+  <div class="wrap">
+    <!-- PENDING: confirm 1938 founding date -->
+    <div class="seal">
+      <span class="yr">1938</span>
+      <span class="txt">San Jose's original<br>tow company</span>
+    </div>
+    <h1>Bad day on the road? <em>We've seen it before.</em></h1>
+    <p class="lede">Motor Body has been pulling San Jose out of trouble since 1938 — flat tires, dead batteries, lockouts, accidents, and everything in between. Same family, third generation, trucks rolling 24 hours a day.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="tel:+14089939888">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.24 1z"/></svg>
+        Call (408) 993-9888
+      </a>
+      <a class="btn btn-ghost" href="#contact">Request a tow or quote</a>
+    </div>
+    <div class="trust">
+      <span><b>24/7</b> emergency towing</span><span class="dot">•</span>
+      <span><b>Three generations</b> of one family</span><span class="dot">•</span>
+      <span><b>Towing &amp; repair</b> under one roof</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">What we do</div>
+      <h2>Towing, roadside &amp; repair</h2>
+      <p>One call covers it. We tow it, we get you moving again, and if it needs fixing, our own shop handles that too — you're not bounced between three different companies.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="shot">
+          <img src="images/service-towing.jpg" alt="Vehicle loaded on a Motor Body flatbed">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h11l2-5h3l2 5v4h-3"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M3 13V8h6"/></svg></span>
+        </div>
+        <div class="body">
+          <h3>24-Hour Towing</h3>
+          <p>Light and medium duty, accident recovery, and secure vehicle storage. Night, weekend, holiday — someone picks up.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="shot">
+          <img src="images/service-roadside.jpg" alt="Motor Body crew assisting a driver on the highway">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></span>
+        </div>
+        <div class="body">
+          <h3>Roadside Assistance</h3>
+          <p>Locked out, flat tire, dead battery, out of gas. Most of the time we get you back on the road without a tow at all.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="shot">
+          <img src="images/service-repair.jpg" alt="Vehicle in the Motor Body repair shop">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 00-5.4 5.3L3 18l3 3 6.4-6.3a4 4 0 005.3-5.4l-2.6 2.6-2.1-.5-.5-2.1z"/></svg></span>
+        </div>
+        <div class="body">
+          <h3>Auto Repair</h3>
+          <p>Our own shop, servicing nearly every make on the road — from routine maintenance to the repair that gets you home safe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-list">
+      <h3>Everything we handle</h3>
+      <ul class="svc-grid">
+        <li>24-hour towing</li>
+        <li>Emergency roadside assistance</li>
+        <li>Lockout service</li>
+        <li>Tire change</li>
+        <li>Jump start</li>
+        <li>Mobile battery installation</li>
+        <li>Fuel delivery</li>
+        <li>Air transfers</li>
+        <li>Vehicle storage</li>
+        <li>Accident recovery</li>
+        <li>Auto repair &amp; service</li>
+        <li>Routine maintenance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Story ===== PENDING: confirm 1938 / 1948 / 1970s timeline -->
+<section class="story" id="about">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Our story</div>
+      <h2>Same family. <em>Same phone number.</em> Since 1938.</h2>
+      <p>Motor Body Company started towing San Jose in 1938. Norm and Vince Alongi opened their own shop ten years later, and by the 1970s the two had become one business — the name over the door changed, the trucks never stopped rolling.</p>
+      <p>Today it's Nick and Russell running it, the third generation of the same family. Their father Stan spent his career on these roads and helped push California's "slow down or move over" law into existence — the one that protects every tow operator standing on a shoulder at night.</p>
+      <p>That's the whole idea here: a family business, in one city, doing one thing well, for a very long time.</p>
+    </div>
+    <div>
+      <ul class="gens">
+        <li>
+          <span class="num">1<sup>st</sup></span>
+          <span><span class="who">Norm &amp; Vince Alongi</span><br><span class="what">Started the business and put the first trucks on the road.</span></span>
+        </li>
+        <li>
+          <span class="num">2<sup>nd</sup></span>
+          <span><span class="who">Stan &amp; Mark Alongi</span><br><span class="what">Grew the fleet and fought for the laws that keep tow operators alive.</span></span>
+        </li>
+        <li>
+          <span class="num">3<sup>rd</sup></span>
+          <span><span class="who">Nick &amp; Russell Alongi</span><br><span class="what">Running it today, out of the same shop on Sunol Street.</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Hiring ===== PENDING: confirm benefits still offered -->
+<section class="hiring" id="careers">
+  <div class="bg"><img src="images/band-flatbed.jpg" alt="Motor Body flatbed tow truck"></div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker"><span class="pip"></span> Now hiring</span>
+    <h2>Tow truck drivers &amp; dispatchers</h2>
+    <p class="sub">We're looking for people who take pride in the work and want to grow somewhere that's been here for generations. Here's what we offer:</p>
+    <ul class="perks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Competitive pay</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 401(k) with matching up to 4%</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Paid time off (full-time)</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sick pay you can use as vacation</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Medical, dental, vision &amp; prescription</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Full benefits for you <em>and</em> your family</li>
+    </ul>
+    <a class="btn btn-navy" href="#contact" data-prefill="Job application">Apply now</a>
+  </div>
+</section>
+
+<!-- ===== Service areas ===== -->
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where we go</div>
+      <h2>Serving San Jose &amp; the South Bay</h2>
+      <p>We know these streets. That's not a slogan — it's why we get to you faster than a dispatcher three counties away.</p>
+    </div>
+    <div class="area-chips">
+      <span>San Jose</span>
+      <span>Downtown San Jose</span>
+      <span>Willow Glen</span>
+      <span>Almaden Valley</span>
+      <span>Evergreen</span>
+    </div>
+    <p class="area-note">Plus the surrounding Northern California area. Not sure if we reach you? Call and ask — we probably do.</p>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Get in touch</div>
+      <h2>Reach us any time</h2>
+      <p class="lede">Broken down right now? Call — it's the fastest way to get a truck moving. For quotes, appointments or job applications, send us a note.</p>
+      <ul class="info-list">
+        <li>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.24 1z"/></svg></span>
+          <div><div class="lbl">Call us</div><a class="val" href="tel:+14089939888">(408) 993-9888</a></div>
+        </li>
+        <li>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg></span>
+          <div><div class="lbl">The shop</div><span class="val">455 Sunol St., San Jose, CA 95126</span></div>
+        </li>
+        <li>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><div class="lbl">Hours</div><span class="val">Office: Mon–Fri, 8AM–5PM<br>Towing: 24 hours, 7 days a week</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <h3>Send us a message</h3>
+      <p class="fnote">Emergency? Please call — a form can't dispatch a truck.</p>
+
+      <!-- Netlify Forms -> dashboard -> Forms -> motorbody-contact -->
+      <form name="motorbody-contact" method="POST" data-netlify="true"
+            data-netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="motorbody-contact">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="type">I need <span class="req">*</span></label>
+          <select id="type" name="type" required>
+            <option value="" disabled selected>Select…</option>
+            <option>A tow / roadside help</option>
+            <option>An appointment or quote</option>
+            <option>Job application</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="Full name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" placeholder="(408) 000-0000" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label for="msg">Message <span class="req">*</span></label>
+          <textarea id="msg" name="msg" placeholder="Where you are, what's going on, or what you need…" required></textarea>
+        </div>
+        <button class="btn btn-gold" type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><img src="images/motorbody-wordmark-white.png" alt="Motor Body Company"></div>
+      <p>Family-owned towing, roadside assistance and auto repair. Serving San Jose and the South Bay since 1938 — three generations of the same family.</p>
+      <p class="soon"><span class="pip"></span> Full website coming soon</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">24-Hour Towing</a></li>
+        <li><a href="#services">Roadside Assistance</a></li>
+        <li><a href="#services">Auto Repair</a></li>
+        <li><a href="#careers">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Find us</h4>
+      <ul>
+        <li><a href="tel:+14089939888">(408) 993-9888</a></li>
+        <li>455 Sunol St.<br>San Jose, CA 95126</li>
+        <li><a href="https://www.yelp.com/biz/motor-body-san-jose" target="_blank" rel="noopener">Yelp</a></li>
+        <li><a href="https://www.mapquest.com/us/california/motor-body-289449679" target="_blank" rel="noopener">MapQuest</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footbar">
+    <div class="wrap">
+      <span>© <span id="yr"></span> Motor Body Company. All rights reserved.</span>
+      <span>Site by Kaizen Agency</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // "Apply now" preselects Job application, then jumps to the form
+  document.querySelectorAll('[data-prefill]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var sel = document.getElementById('type');
+      for (var i = 0; i < sel.options.length; i++){
+        if (sel.options[i].text === 'Job application') sel.selectedIndex = i;
+      }
+    });
+  });
+</script>
+</body>
+</html>

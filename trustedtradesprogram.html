@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Trusted Trade Partners - Bay Area's Verified Home Service Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   NEXUS TRUSTED TRADE PARTNERS
+   Design Reference / Wireframe
+   Built by Kaizen Agency - August 2026
+   
+   PALETTE:
+   Navy (primary):        #1B2A4A
+   Nexus Green (accent):  #B8CC3C
+   Coral (CTA):           #E8626C
+   Warm White (base):     #FAFAF7
+   Light Sage (alt bg):   #F0F4E8
+   Dark Text:             #2D2D2D
+   Medium Gray:           #6B7280
+   Light Border:          #E5E7EB
+   
+   FONTS:
+   Headlines: Outfit (700/800)
+   Body: Inter (400/500)
+   
+   NOTES FOR DESIGNER:
+   - Directory/search is the hero action
+   - Trade categories grid is the signature element
+   - Feels like a professional association, not a marketplace
+   - Nexus branding runs through it but this is its own product
+   - Mobile-first responsive
+   ============================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1B2A4A;
+  --green: #B8CC3C;
+  --coral: #E8626C;
+  --warm-white: #FAFAF7;
+  --sage-bg: #F0F4E8;
+  --dark: #2D2D2D;
+  --gray: #6B7280;
+  --light-border: #E5E7EB;
+  --green-dark: #9AB030;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  background: var(--warm-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- TOP BAR ---- */
+.top-bar {
+  background: var(--navy);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.8rem;
+  padding: 8px 0;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-bar a {
+  color: var(--green);
+  text-decoration: none;
+}
+.top-bar a:hover { text-decoration: underline; }
+
+/* ---- NAV ---- */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid var(--light-border);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--navy);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-logo-icon svg { width: 24px; height: 24px; }
+.nav-logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.nav-logo-text span {
+  display: block;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-links .btn-nav {
+  background: var(--coral);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.nav-links .btn-nav:hover { background: #d4535d; }
+
+/* ---- CONTAINER ---- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- HERO ---- */
+.hero {
+  background: var(--navy);
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(184,204,60,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(184,204,60,0.15);
+  border: 1px solid rgba(184,204,60,0.3);
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 3.2rem;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* ---- SEARCH BAR ---- */
+.hero-search {
+  background: #fff;
+  border-radius: 16px;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.hero-search input {
+  flex: 1;
+  border: none;
+  padding: 16px 20px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  background: transparent;
+  outline: none;
+  color: var(--dark);
+}
+.hero-search input::placeholder { color: #aaa; }
+.hero-search select {
+  border: 1px solid var(--light-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--gray);
+  background: var(--warm-white);
+  cursor: pointer;
+  outline: none;
+  min-width: 160px;
+}
+.hero-search button {
+  background: var(--coral);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.hero-search button:hover { background: #d4535d; }
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 40px;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat .num {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--green);
+}
+.hero-stat .label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---- SECTION SHARED ---- */
+.section { padding: 80px 0; }
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--green-dark);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--navy);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--gray);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ---- TRADE CATEGORIES ---- */
+.categories { background: var(--warm-white); }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.cat-card {
+  background: #fff;
+  border: 1px solid var(--light-border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--dark);
+}
+.cat-card:hover {
+  border-color: var(--green);
+  box-shadow: 0 8px 24px rgba(184,204,60,0.15);
+  transform: translateY(-2px);
+}
+.cat-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--sage-bg);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.5rem;
+}
+.cat-card:hover .cat-icon { background: rgba(184,204,60,0.2); }
+.cat-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.cat-card p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+.cat-card-all {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.cat-card-all h3 { color: #fff; }
+.cat-card-all p { color: rgba(255,255,255,0.6); }
+.cat-card-all .cat-icon {
+  background: rgba(184,204,60,0.2);
+}
+.cat-card-all:hover {
+  box-shadow: 0 8px 24px rgba(27,42,74,0.3);
+  border-color: var(--navy);
+}
+
+/* ---- FEATURED PARTNERS ---- */
+.partners { background: #fff; }
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.partner-card {
+  border: 1px solid var(--light-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+.partner-card:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+.partner-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--sage-bg) 0%, #e8edd6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: 0.85rem;
+  font-style: italic;
+  position: relative;
+}
+.partner-verified {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--green);
+  color: var(--navy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.partner-info {
+  padding: 24px;
+}
+.partner-info h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+.partner-trade {
+  font-size: 0.8rem;
+  color: var(--green-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 12px;
+}
+.partner-info p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.partner-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+.partner-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---- HOW IT WORKS ---- */
+.how-it-works { background: var(--sage-bg); }
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 64px;
+  margin-top: 48px;
+  align-items: center;
+}
+.how-left {}
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.how-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.how-num {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: var(--navy);
+  color: var(--green);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.how-step-content h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.how-step-content p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.how-right {
+  background: var(--navy);
+  border-radius: 20px;
+  padding: 48px 40px;
+  color: #fff;
+  text-align: center;
+}
+.how-right h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+.how-right p {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.how-right .btn-primary {
+  display: inline-block;
+  background: var(--coral);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.how-right .btn-primary:hover { background: #d4535d; }
+
+/* ---- BENEFITS (for partners) ---- */
+.benefits { background: #fff; }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.benefit-card {
+  padding: 32px 28px;
+  border: 1px solid var(--light-border);
+  border-radius: 14px;
+  transition: all 0.2s;
+}
+.benefit-card:hover {
+  border-color: var(--green);
+}
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--sage-bg);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+.benefit-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ---- HOMEOWNER CTA ---- */
+.homeowner-cta {
+  background: var(--navy);
+  padding: 80px 0;
+}
+.homeowner-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.homeowner-text h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.homeowner-text p {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.homeowner-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.homeowner-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+}
+.homeowner-features li .check {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: rgba(184,204,60,0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.homeowner-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+}
+.homeowner-form h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.homeowner-form > p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.form-group { margin-bottom: 12px; }
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--light-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border 0.2s;
+  background: var(--warm-white);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.btn-submit {
+  width: 100%;
+  background: var(--coral);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: #d4535d; }
+
+/* ---- PARTNER APPLICATION ---- */
+.apply-section { background: var(--sage-bg); }
+.apply-inner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.apply-inner .btn-primary {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-top: 32px;
+  transition: background 0.2s;
+}
+.apply-inner .btn-primary:hover { background: #142238; }
+.apply-inner .btn-secondary {
+  display: inline-block;
+  color: var(--navy);
+  padding: 16px 32px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.apply-inner .btn-secondary:hover { text-decoration: underline; }
+
+/* ---- FOOTER ---- */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand .nav-logo-text {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+.footer-brand .nav-logo-text span { color: rgba(255,255,255,0.4); }
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+.footer h4 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer ul a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer ul a:hover { color: var(--green); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+.footer-bottom a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-search {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .hero-search select { min-width: auto; }
+  .hero-stats { gap: 24px; }
+  .hero-stat .num { font-size: 1.4rem; }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .partners-grid { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .homeowner-inner { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .section-title { font-size: 1.7rem; }
+  .nav-links { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <span>A program by <a href="https://nexus-networking.com" target="_blank">Nexus Networking</a> &mdash; Where Silicon Valley Connects</span>
+    <span>Serving the Bay Area, Peninsula &amp; San Jose</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B8CC3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        Trusted Trade Partners
+        <span>by Nexus Networking</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#directory">Directory</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#for-partners">For Partners</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#apply" class="btn-nav">Become a Partner</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Verified &amp; Vetted Professionals
+      </div>
+      <h1>Find <em>trusted</em> home service pros in the Bay Area.</h1>
+      <p>Every partner in our directory is verified, vetted, and backed by the Nexus Networking community. No guesswork - just reliable professionals your neighbors already trust.</p>
+
+      <!-- SEARCH BAR -->
+      <div class="hero-search">
+        <input type="text" placeholder="What do you need? (e.g. roofing, plumbing, carpet cleaning...)">
+        <select>
+          <option>All Trades</option>
+          <option>Roofing</option>
+          <option>Plumbing</option>
+          <option>Carpet Cleaning</option>
+          <option>Window Cleaning</option>
+          <option>Painting</option>
+          <option>Solar</option>
+          <option>HVAC</option>
+          <option>Handyman</option>
+          <option>Landscaping</option>
+          <option>Electrical</option>
+          <option>ADU / Construction</option>
+        </select>
+        <button>Search</button>
+      </div>
+
+      <!-- STATS -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">350+</div>
+          <div class="label">Verified Contacts</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">5</div>
+          <div class="label">Pilot Partners</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">100%</div>
+          <div class="label">Vetted &amp; Licensed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADE CATEGORIES -->
+<section class="section categories" id="directory">
+  <div class="container">
+    <div class="section-label">Browse by Trade</div>
+    <h2 class="section-title">Find the right pro for the job.</h2>
+    <p class="section-subtitle">Every partner is licensed, insured, and personally vetted through the Nexus Networking community.</p>
+
+    <div class="categories-grid">
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F3E0;</div>
+        <h3>Roofing</h3>
+        <p>Repairs, replacements, inspections</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F6BF;</div>
+        <h3>Plumbing</h3>
+        <p>Leaks, drains, water heaters</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F9F9;</div>
+        <h3>Carpet Cleaning</h3>
+        <p>Residential &amp; commercial</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1FA9F;</div>
+        <h3>Window Cleaning</h3>
+        <p>Interior, exterior, screens</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F3A8;</div>
+        <h3>Painting</h3>
+        <p>Interior, exterior, cabinets</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x2600;</div>
+        <h3>Solar</h3>
+        <p>Panels, installation, maintenance</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F527;</div>
+        <h3>Handyman</h3>
+        <p>Repairs, assembly, odd jobs</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F331;</div>
+        <h3>Landscaping</h3>
+        <p>Design, maintenance, hardscape</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x2744;</div>
+        <h3>HVAC</h3>
+        <p>Heating, cooling, air quality</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x26A1;</div>
+        <h3>Electrical</h3>
+        <p>Wiring, panels, smart home</p>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-icon">&#x1F3D7;</div>
+        <h3>ADU / Construction</h3>
+        <p>Additions, remodels, permits</p>
+      </a>
+      <a href="#" class="cat-card cat-card-all">
+        <div class="cat-icon">&#x2192;</div>
+        <h3>View All Trades</h3>
+        <p>Browse the full directory</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PARTNERS -->
+<section class="section partners">
+  <div class="container">
+    <div class="section-label">Featured Partners</div>
+    <h2 class="section-title">Meet some of our trusted pros.</h2>
+    <p class="section-subtitle">These are the businesses your neighbors already rely on. Every partner is personally verified through Nexus Networking.</p>
+
+    <div class="partners-grid">
+      <!-- Partner 1 -->
+      <div class="partner-card">
+        <div class="partner-img">
+          <span>[Partner photo placeholder]</span>
+          <div class="partner-verified">Nexus Verified</div>
+        </div>
+        <div class="partner-info">
+          <h3>Falcon Roofing</h3>
+          <div class="partner-trade">Roofing</div>
+          <p>32+ years serving Bay Area homeowners with roof repairs, replacements, and inspections. Family owned and operated.</p>
+          <div class="partner-meta">
+            <span>&#x1F4CD; Bay Area</span>
+            <span>&#x2B50; 32 yrs in business</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner 2 -->
+      <div class="partner-card">
+        <div class="partner-img">
+          <span>[Partner photo placeholder]</span>
+          <div class="partner-verified">Nexus Verified</div>
+        </div>
+        <div class="partner-info">
+          <h3>Home Pros</h3>
+          <div class="partner-trade">Carpet &amp; House Cleaning</div>
+          <p>Professional carpet, upholstery, and house cleaning. Eco-friendly products, free assessments, and no-judgment service.</p>
+          <div class="partner-meta">
+            <span>&#x1F4CD; Peninsula / San Jose</span>
+            <span>&#x2B50; Eco-friendly</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner 3 -->
+      <div class="partner-card">
+        <div class="partner-img">
+          <span>[Partner photo placeholder]</span>
+          <div class="partner-verified">Nexus Verified</div>
+        </div>
+        <div class="partner-info">
+          <h3>Johnny Windows</h3>
+          <div class="partner-trade">Window Cleaning</div>
+          <p>Residential and commercial window cleaning services. Interior, exterior, screens, and hard water stain removal.</p>
+          <div class="partner-meta">
+            <span>&#x1F4CD; Bay Area</span>
+            <span>&#x2B50; Licensed &amp; insured</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Your next home project, handled.</h2>
+    <p class="section-subtitle">Whether you need a roofer, plumber, or carpet cleaner - we connect you with verified professionals in three simple steps.</p>
+
+    <div class="how-grid">
+      <div class="how-left">
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-num">1</div>
+            <div class="how-step-content">
+              <h3>Search or browse</h3>
+              <p>Use the directory to find the trade you need. Filter by category, location, or search by keyword.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">2</div>
+            <div class="how-step-content">
+              <h3>Review verified pros</h3>
+              <p>Every partner is vetted through Nexus Networking - licensed, insured, and backed by real referrals from other trade professionals.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">3</div>
+            <div class="how-step-content">
+              <h3>Connect directly</h3>
+              <p>Reach out to the partner directly or request an introduction through our referral team. No middleman fees, no markups.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="how-right">
+        <h3>Are you a trade professional?</h3>
+        <p>Join the Nexus Trusted Trade Partner network to get referrals from other verified professionals, access pooled marketing campaigns, and grow your business through our community.</p>
+        <a href="#apply" class="btn-primary">Apply to Join</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS FOR PARTNERS -->
+<section class="section benefits" id="for-partners">
+  <div class="container">
+    <div class="section-label">For Trade Partners</div>
+    <h2 class="section-title">Why join the network?</h2>
+    <p class="section-subtitle">Stop chasing leads. Start receiving warm referrals from professionals who already trust you.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x1F4E8;</div>
+        <h3>Cross-referral marketing</h3>
+        <p>Your business gets promoted to every partner's past client list through co-branded email campaigns and door hangers.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x1F4CB;</div>
+        <h3>Directory listing</h3>
+        <p>A dedicated profile on the Trusted Trade Partners directory - visible to homeowners searching for your trade in the Bay Area.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x2705;</div>
+        <h3>Nexus Verified badge</h3>
+        <p>Stand out with a verified badge that tells homeowners you've been vetted by the Nexus community - not just by online reviews.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x1F91D;</div>
+        <h3>Warm introductions</h3>
+        <p>Referrals come from trusted professionals who know your work - not cold leads from a form. Higher close rates, better clients.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x1F4CA;</div>
+        <h3>Lead tracking &amp; reporting</h3>
+        <p>See where your referrals are coming from, track conversions, and measure the ROI of your partnership.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">&#x1F3AF;</div>
+        <h3>Nexus event access</h3>
+        <p>Priority access to Nexus Networking events where you meet potential referral partners face-to-face and build real relationships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOMEOWNER CTA / REFERRAL REQUEST -->
+<section class="homeowner-cta" id="contact">
+  <div class="container">
+    <div class="homeowner-inner">
+      <div class="homeowner-text">
+        <div class="section-label" style="color: var(--green);">For Homeowners</div>
+        <h2>Need a pro you can actually trust?</h2>
+        <p>Skip the guesswork. Tell us what you need and we'll connect you with a verified trade partner in the Bay Area - free, no obligation.</p>
+        <ul class="homeowner-features">
+          <li><span class="check">&#x2713;</span> Every partner is licensed and insured</li>
+          <li><span class="check">&#x2713;</span> Personally vetted through Nexus Networking</li>
+          <li><span class="check">&#x2713;</span> No referral fees or markups to you</li>
+          <li><span class="check">&#x2713;</span> Free - no obligation to hire</li>
+        </ul>
+      </div>
+      <div class="homeowner-form">
+        <h3>Request a Referral</h3>
+        <p>Tell us what you need and we'll match you with the right pro.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" placeholder="First name">
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Last name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What do you need?</label>
+          <select>
+            <option>Select a trade</option>
+            <option>Roofing</option>
+            <option>Plumbing</option>
+            <option>Carpet Cleaning</option>
+            <option>Window Cleaning</option>
+            <option>Painting</option>
+            <option>Solar</option>
+            <option>HVAC</option>
+            <option>Handyman</option>
+            <option>Landscaping</option>
+            <option>Electrical</option>
+            <option>ADU / Construction</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell us about your project</label>
+          <textarea placeholder="Brief description of what you need done..."></textarea>
+        </div>
+        <button class="btn-submit">Get Matched Free</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER APPLICATION CTA -->
+<section class="section apply-section" id="apply">
+  <div class="container">
+    <div class="apply-inner">
+      <div class="section-label">Join the Network</div>
+      <h2 class="section-title">Ready to grow through referrals?</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">If you're a licensed home service professional in the Bay Area and want to be part of a trusted referral network, we'd love to hear from you. Spots are limited during our pilot phase.</p>
+      <div>
+        <a href="#" class="btn-primary">Apply to Become a Partner</a>
+        <a href="https://nexus-networking.com" class="btn-secondary" target="_blank">Learn About Nexus Networking &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo-text">
+          Trusted Trade Partners
+          <span>by Nexus Networking</span>
+        </div>
+        <p>A verified directory of licensed, insured home service professionals serving the Bay Area. Every partner is personally vetted through the Nexus Networking community.</p>
+      </div>
+      <div>
+        <h4>Directory</h4>
+        <ul>
+          <li><a href="#">Roofing</a></li>
+          <li><a href="#">Plumbing</a></li>
+          <li><a href="#">Carpet Cleaning</a></li>
+          <li><a href="#">Window Cleaning</a></li>
+          <li><a href="#">View All Trades</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">For Trade Partners</a></li>
+          <li><a href="#">Apply to Join</a></li>
+          <li><a href="https://nexus-networking.com" target="_blank">Nexus Networking</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Request a Referral</a></li>
+          <li><a href="https://www.instagram.com/nexusnetworking_/" target="_blank">Instagram</a></li>
+          <li><a href="#">info@nexus-networking.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Nexus Trusted Trade Partners. All rights reserved.</span>
+      <span>Website by <a href="https://kaizenagency.org" target="_blank">Kaizen Agency</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

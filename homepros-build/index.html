@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Home Pros Build Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Sofia+Sans+Condensed:wght@800;900&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one 820px reading column; a sticky progress bar; phases as collapsible sections of checkable rows. */
+:root{
+  --bg:#f5f5f2; --card:#ffffff; --ink:#2d2d2d; --muted:#62645c; --line:#e3e4dc;
+  --lime:#c2d841; --lime-tint:#f3f5e9; --lime-ink:#5d6b0f; --done:#8a8c84; --warn:#b4541a; --warn-tint:#fbeee4;
+  --display:"Sofia Sans Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1c1d1a; --card:#262724; --ink:#ececE6; --muted:#a6a89e; --line:#3a3b36;
+  --lime-tint:#2f3320; --lime-ink:#d4e66a; --done:#7d7f77; --warn:#f0a070; --warn-tint:#3a2a20; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:3px}
+a:hover{color:var(--lime-ink)}
+:focus-visible{outline:3px solid var(--lime);outline-offset:2px;border-radius:4px}
+.col{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+
+header.top{padding-block:40px 24px}
+.eyebrow{display:inline-block;background:var(--lime);color:#2d2d2d;font-weight:800;font-size:13px;letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:5px}
+h1{font:900 clamp(40px,7vw,64px)/.92 var(--display);text-transform:uppercase;margin:14px 0 12px;letter-spacing:-.005em}
+.intro{color:var(--muted);max-width:62ch;margin:0}
+
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar .col{display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.meter{flex:1;min-width:160px;height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--lime);transition:width .35s ease}
+.pct{font:600 15px var(--body);font-variant-numeric:tabular-nums;white-space:nowrap}
+.who{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.who input{font:500 14px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 10px;width:150px}
+
+.resume{margin-block:20px 8px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--lime);border-radius:10px;padding:16px 18px;display:grid;gap:6px}
+.resume b{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.resume p{margin:0}
+.resume .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+.btn{font:700 14px var(--body);border-radius:999px;padding:9px 16px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.lime{background:var(--lime);border-color:var(--lime);color:#2d2d2d}
+.btn.lime:hover{filter:brightness(.95)}
+.btn.quiet{border-color:var(--line);color:var(--muted)}
+
+section.links{margin-block:28px}
+h2{font:800 clamp(26px,4vw,34px)/1 var(--display);text-transform:uppercase;margin:0}
+.linklist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.linklist li{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:12px;font-size:15px}
+.linklist span{color:var(--muted)}
+
+.phase{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-block:14px;overflow:hidden}
+.phase>summary{list-style:none;cursor:pointer;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center}
+.phase>summary::-webkit-details-marker{display:none}
+.phase>summary .meta{grid-column:1;color:var(--muted);font-size:14px}
+.phase>summary .count{grid-row:1/3;grid-column:2;font:600 14px var(--body);font-variant-numeric:tabular-nums;background:var(--lime-tint);color:var(--lime-ink);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.phase.complete>summary .count{background:var(--lime);color:#2d2d2d}
+.phase>summary h2::after{content:"";display:inline-block;width:9px;height:9px;margin-left:12px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg) translateY(-4px);transition:transform .2s;opacity:.5}
+.phase[open]>summary h2::after{transform:rotate(45deg) translateY(-6px)}
+.phase .note{margin:0 20px 10px;font-size:14px;color:var(--muted)}
+.warnbox{margin:0 20px 12px;background:var(--warn-tint);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:14px;font-weight:500}
+
+ul.items{list-style:none;margin:0;padding:0 0 8px}
+.item{border-top:1px solid var(--line);padding:12px 20px;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 12px;align-items:start}
+.item input[type=checkbox]{width:22px;height:22px;margin:2px 0 0;accent-color:#9fb52a;cursor:pointer}
+.item label{cursor:pointer;min-width:0}
+.item .t{font-weight:500}
+.item .d{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.item .own{font:500 12px var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 7px;white-space:nowrap;align-self:start;margin-top:2px}
+.item.checked .t{color:var(--done);text-decoration:line-through;text-decoration-thickness:1.5px}
+.item.checked .d{opacity:.7}
+.item .stamp{grid-column:2/4;font-size:12px;color:var(--done)}
+.item .notebtn{grid-column:2/4;justify-self:start;background:none;border:0;padding:2px 0;font:600 13px var(--body);color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.item .notebtn.has{color:var(--lime-ink)}
+.item textarea{grid-column:2/4;width:100%;min-height:68px;font:400 14px/1.5 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical}
+.item.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{background:var(--lime-tint)}100%{background:transparent}}
+
+footer{padding-block:30px 60px;color:var(--muted);font-size:14px;display:grid;gap:14px}
+footer .row{display:flex;gap:10px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+.confirm{display:inline-flex;gap:8px;align-items:center;font-size:14px}
+
+@media (max-width:560px){
+  .linklist li{grid-template-columns:minmax(0,1fr);gap:0}
+  .item{grid-template-columns:28px minmax(0,1fr)}
+  .item .own{grid-column:2;justify-self:start}
+  .item .stamp,.item .notebtn,.item textarea{grid-column:2}
+  .who input{width:120px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="bar" role="region" aria-label="Progress">
+  <div class="col">
+    <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+    <span class="pct" id="pct">0 of 0 done</span>
+    <label class="who">You <input id="who" placeholder="Your name" autocomplete="off"></label>
+  </div>
+</div>
+
+<main class="col">
+  <header class="top">
+    <span class="eyebrow">Kaizen Agency · Client build</span>
+    <h1>Home Pros build checklist</h1>
+    <p class="intro">Everything between Figma and a live homepros.casa on the Kaizen Base. Check items off as you go - your progress and notes save in this browser on this computer, so you can close the tab and pick up where you left off.</p>
+  </header>
+
+  <div class="resume" id="resume" hidden>
+    <b>Pick up where you left off</b>
+    <p id="resumeText"></p>
+    <div class="row"><button class="btn lime" id="jumpNext" type="button">Go to next item</button></div>
+  </div>
+
+  <section class="links" aria-labelledby="linksH">
+    <h2 id="linksH">Links</h2>
+    <ul class="linklist">
+      <li><span>Brand guide</span><a href="https://docs.google.com/document/d/1gfEh9QkdtomzZWbl7i6ID1VpPA9ojcnw4vGLAzbLmig/edit" target="_blank" rel="noopener">Home Pros - Website &amp; Brand Guide</a></li>
+      <li><span>Homepage design</span><a href="https://www.figma.com/design/fFRTLt91bnlfJ7uKeI2Lz4/HomePros?node-id=276-44" target="_blank" rel="noopener">Figma - Homepage [UPDATED] (desktop, mobile, dev notes)</a></li>
+      <li><span>Logo master</span><a href="https://www.figma.com/design/hWRAWWTEObewiNj3ZwLrok/Other-Designs?node-id=362-29" target="_blank" rel="noopener">Figma - Other Designs, Home Pros page</a></li>
+      <li><span>Coded prototype</span><a href="https://claude.ai/artifact/2DB7gippzcL2hdofWayC95" target="_blank" rel="noopener">Homepage prototype</a> - hover states, animations, estimator script. Ask Daisy for access.</li>
+      <li><span>Current site</span><a href="https://homepros.casa" target="_blank" rel="noopener">homepros.casa</a> (GoDaddy Airo - photos can be reused)</li>
+      <li><span>Google Business Profile</span><a href="https://share.google/y3Ty2iA8lClhtDQag" target="_blank" rel="noopener">Home Pros GBP</a></li>
+    </ul>
+  </section>
+
+  <div id="phases"></div>
+
+  <footer>
+    <p>Progress is stored only in this browser. To move it to another computer, export it here and import it there.</p>
+    <div class="row">
+      <button class="btn quiet" id="exportBtn" type="button">Export progress</button>
+      <label class="btn quiet" for="importFile" tabindex="0">Import progress</label>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <span class="confirm" id="resetWrap"><button class="btn quiet" id="resetBtn" type="button">Reset checklist</button></span>
+    </div>
+    <p>Kaizen Agency · Owners: <b>Daisy</b> (admin + hosting), <b>Basil</b> (admin, no hosting), <b>Dev</b> (build developer, admin for the build only).</p>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  // ---- Checklist content. Ids are permanent: change wording freely, never reuse an id. ----
+  const PHASES=[
+    {id:'gate',title:'Gate - before anyone clones',meta:'Daisy confirms each one. Nobody clones the base until all three are checked.',items:[
+      ['g1','Signed agreement and cleared deposit from Maria','','Daisy'],
+      ['g2','Sitemap signed off','Phase 1 = Home, Pricing, Thank You, Privacy, Terms, Cookie, plus the 404 page','Daisy'],
+      ['g3','Homepage design approved by Maria','Real photos and logo swapped into the prototype first','Daisy']]},
+    {id:'maria',title:'Waiting on Maria',meta:'Collect these before or during the build.',items:[
+      ['m1','Legal business name and mailing address','Needed for Terms, the Complianz wizard and the footer','Daisy'],
+      ['m2','What backs "Licensed & insured"','If it is a CSLB contractor license, the number must show on the site (B&P Code 7030.5) - take it from an official document and check it on the CSLB site. No license means the line becomes "Insured".','Daisy'],
+      ['m3','Where info@homepros.casa email is hosted today','GoDaddy, Google or Microsoft - needed before any DNS change','Daisy'],
+      ['m4','GoDaddy access for homepros.casa','Login or delegate access. Confirm the registrant email is one she can open.','Daisy'],
+      ['m5','Approved photos','Hero, 6 service cards, Maria portrait. Current site photos are fine to reuse.','Daisy'],
+      ['m6','Confirm the 3 homepage reviews are live on her Google Business Profile as written','','Daisy'],
+      ['m7','Approve the new Tile & Grout card copy','','Daisy'],
+      ['m8','Terms details','Cancellation notice and fee, payment methods, re-clean window, county','Daisy']]},
+    {id:'dec',title:'Decisions for Daisy',meta:'Use the note on each item to record what was decided.',items:[
+      ['d1','Quote form plugin','Recommended: Fluent Forms (Kaizen Base standard), redirect to /thank-you/, notify Maria + kaizenagencyacc@gmail.com. Brand guide currently says Elementor Pro form.','Daisy'],
+      ['d2','Privacy and Cookie Policy source','Recommended: Complianz-generated (CCPA/CPRA). Keep the Terms draft for Maria or an attorney to approve. No placeholder legal text at launch.','Daisy'],
+      ['d3','Estimator prices','Rate card gives ranges (bedroom $68 - $152), Figma shows one number. Show "from $X" or a range?','Daisy'],
+      ['d4','Futura PT Condensed license','Adobe Fonts - whose account pays, and is it billed to the client?','Daisy'],
+      ['d5','Approve Smash Balloon Instagram Feed (free)','Not on the base plugin list or the banned list','Daisy'],
+      ['d6','Canonical host','Default: bare homepros.casa unless her print, email and GBP already use www','Daisy']]},
+    {id:'p0',title:'Phase 0 - Clone and reset',meta:'About 45 min. Run before any build work.',items:[
+      ['c1','Add homepros.casa to SiteGround as its own website entry','Never parked under a Kaizen plan','Daisy'],
+      ['c2','Staging on staging.homepros.casa','Not *.sg-host.com (saves an Elementor Pro seat). Add only the subdomain record at GoDaddy - do not touch nameservers yet.','Daisy'],
+      ['c3','Clone the Kaizen Base','','Daisy'],
+      ['c4','Site title, tagline, admin email, timezone America/Los_Angeles, site icon','Confirm "Local time" reads correctly','Daisy'],
+      ['c5','Named admin account per person, delete the base admin','Non-obvious usernames; sign in with email','Daisy'],
+      ['c6','New salts, re-save permalinks','','Daisy'],
+      ['c7','wp search-replace (dry run, then real) + wp elementor replace-urls','','Daisy'],
+      ['c8','Regenerate Elementor CSS & Data, purge SG Optimizer cache','','Daisy'],
+      ['c9','Reactivate Elementor Pro and Unlimited Elements on this site\'s own seat','','Daisy'],
+      ['c10','Clear carried-over tracking','Complianz Statistics, any GA4/GTM ID, header/footer code','Daisy'],
+      ['c11','FluentSMTP set to Maria\'s sender, form notifications repointed, one test submission per form','Check junk','Daisy'],
+      ['c12','AIOSEO site name, organization details, social profiles','','Daisy'],
+      ['c13','Discourage search engines ON and staging password protection ON','','Daisy'],
+      ['c14','Delete AI Agent by SiteGround if it is there','','Daisy'],
+      ['c15','Labelled backup','','Daisy']]},
+    {id:'p1',title:'Phase 1 - Build',meta:'Homepage first, then the other phase 1 pages from the same blocks.',items:[
+      ['b1','Elementor global colors and fonts from the brand guide','Lime #C2D841, charcoal #2D2D2D, tint #F3F5E9, gray #F5F5F5','Dev'],
+      ['b2','Futura PT Condensed Extra Bold as a custom font, DM Sans for everything else','','Dev'],
+      ['b3','Headlines are live text everywhere','Figma uses outlines. The lime brush highlight is CSS or SVG behind the word, not an image.','Dev'],
+      ['b4','Header and footer as Theme Builder templates','Top bar, nav, quote button, mobile menu. Footer bottom row includes the Accessibility Statement page.','Dev'],
+      ['b5','Logos as SVG from the logo master; favicon 512 x 512 house-H mark','','Dev'],
+      ['b6','Homepage - every section, brand guide copy, Figma order','','Dev'],
+      ['b7','Estimate calculator in an HTML widget','Lift script and styles from the prototype, prices per decision 3. Same block on /pricing/ with no service pre-selected.','Dev'],
+      ['b8','Animations from the Figma dev notes','Dots drift + parallax, card lift, house badge swap, trade tile tilt, floating bubbles. All off under reduced motion.','Dev'],
+      ['b9','Instagram grid with Smash Balloon','Settings are in the brand guide','Dev'],
+      ['b10','Quote form per decision 1, redirect to /thank-you/','','Dev'],
+      ['b11','Pricing, Thank You (noindex), 404, legal pages','','Basil'],
+      ['b12','Every button and menu link per the brand guide links table','','Basil'],
+      ['b13','Save service card, Why section, reviews, CTA band and referral grid as Elementor templates','These become the inner pages later','Dev']]},
+    {id:'qa',title:'Phase 2 - QA',meta:'Basil first, then Daisy.',items:[
+      ['q1','Desktop, tablet and phone pass against the Figma desktop and 390px mobile frames','','Basil'],
+      ['q2','Accessibility rules from the brand guide','No lime text on light backgrounds, body 17px, nothing under 14px, buttons 56px+, visible labels, placeholder #6B6B6B','Basil'],
+      ['q3','Estimator totals checked against the rate card for every service','','Basil'],
+      ['q4','Test submission lands in Maria\'s inbox and the agency copy, then redirects to /thank-you/','Check junk','Basil'],
+      ['q5','Every link and tel: link works; nothing points at pages that do not exist yet','','Basil'],
+      ['q6','Hidden-admin check','Users: the filter count matches the item count','Daisy'],
+      ['q7','Maria review round and written sign-off','','Daisy']]},
+    {id:'p3',title:'Phase 3 - Launch',meta:'Daisy, early morning, 1 - 2 hrs. The current site is GoDaddy Airo, so this is a rebuild plus DNS move.',warn:'Email is the biggest risk. Never repoint nameservers until the real mail records are in place.',items:[
+      ['l1','Inventory the live GoDaddy zone','MX, SPF, DKIM, DMARC, autodiscover, every TXT token, A and CNAME records','Daisy'],
+      ['l2','If DNS moves to SiteGround: delete its auto-created mail records and recreate the real ones first','MX mailspamprotection, its SPF, default._domainkey, mail/autoconfig/autodiscover. Or keep DNS at GoDaddy and change only A + www.','Daisy'],
+      ['l3','Remove any second apex A record or AAAA pointing at GoDaddy','','Daisy'],
+      ['l4','Drop TTL to 300 a few hours ahead','','Daisy'],
+      ['l5','301s from the old Airo URLs to the new pages','','Daisy'],
+      ['l6','Switch A + www to the SiteGround IP','IP from Site Tools > Dashboard, not from memory','Daisy'],
+      ['l7','SSL for apex and www, HTTPS Enforce ON, www 301 to the canonical host','','Daisy'],
+      ['l8','Remove staging password, Discourage search engines OFF, check AIOSEO Search Appearance and /robots.txt','','Daisy'],
+      ['l9','Read the sitemap','No hello-world, sample-page, uncategorized or author pages','Daisy'],
+      ['l10','Search Console domain property in Maria\'s Google account, Kaizen as user; submit /sitemap.xml','','Daisy'],
+      ['l11','GA4 through the Complianz Statistics wizard; /thank-you/ visits counted as leads; re-run cookie scan','','Daisy'],
+      ['l12','Test email both ways to info@homepros.casa','','Daisy'],
+      ['l13','External redirect check: http -> 301 -> https -> 200, no third hop; then a phone on cellular','','Daisy'],
+      ['l14','48 hours later: site:homepros.casa returns results','','Daisy']]},
+    {id:'p4',title:'Phase 4 - Handback',meta:'About 15 min. Kaizen keeps managing the site; Maria does not edit it.',items:[
+      ['h1','Downgrade or remove the build developer\'s admin account','','Daisy'],
+      ['h2','Re-run the hidden-admin check; Wordfence 2FA for every admin','','Daisy'],
+      ['h3','Maria owns hosting, domain, email, GA4, Search Console and GBP, with Kaizen as collaborator','','Daisy'],
+      ['h4','Any credentials shared by Bitwarden Send or phone, never email or Slack','','Daisy'],
+      ['h5','Retire staging; remove it from the Elementor Pro and Unlimited Elements licence dashboards','','Daisy']]},
+    {id:'next',title:'After launch - inner pages',meta:'Local SEO growth toward about 20 pages, built from the saved templates.',items:[
+      ['n1','Service pages, each with its own copy doc','Carpet, Upholstery, House, Tile & Grout, Rug, Hardwood, Commercial','Daisy'],
+      ['n2','City pages for the priority service areas','','Daisy'],
+      ['n3','Referral Partners and About pages','','Daisy'],
+      ['n4','Repoint every "Learn more" to its service page and add service pages to the footer','','Dev'],
+      ['n5','Hand-coded JSON-LD: LocalBusiness sitewide, Service per page','AIOSEO free has no module for these','Dev']]}
+  ];
+
+  // ---- Storage (this browser only; works on GitHub Pages and when opened as a local file) ----
+  const KEY='kaizen-homepros-build-v1';
+  const blank=()=>({checked:{},notes:{},open:{},who:'',last:null});
+  let S=blank();
+  try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(blank(),JSON.parse(raw))}catch(e){}
+  let saveWarned=false;
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){if(!saveWarned){toast('This browser is blocking saved progress - export before closing');saveWarned=true}}}
+
+  const $=id=>document.getElementById(id);
+  const all=PHASES.flatMap(p=>p.items.map(it=>({phase:p.id,id:it[0],text:it[1]})));
+  const fmt=t=>new Date(t).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+
+  // ---- Render ----
+  const host=$('phases');
+  PHASES.forEach((p,i)=>{
+    const d=document.createElement('details');d.className='phase';d.id='phase-'+p.id;
+    d.open = p.id in S.open ? S.open[p.id] : i<4;
+    d.innerHTML='<summary><h2></h2><span class="meta"></span><span class="count"></span></summary>';
+    d.querySelector('h2').textContent=p.title;d.querySelector('.meta').textContent=p.meta;
+    if(p.warn){const w=document.createElement('p');w.className='warnbox';w.textContent=p.warn;d.appendChild(w)}
+    const ul=document.createElement('ul');ul.className='items';
+    p.items.forEach(([id,text,detail,owner])=>{
+      const li=document.createElement('li');li.className='item';li.id='item-'+id;
+      li.innerHTML='<input type="checkbox"><label><span class="t"></span><span class="d"></span></label><span class="own"></span><span class="stamp"></span><button type="button" class="notebtn"></button>';
+      const cb=li.querySelector('input'),lab=li.querySelector('label');
+      cb.id='cb-'+id;lab.htmlFor=cb.id;
+      li.querySelector('.t').textContent=text;
+      const dd=li.querySelector('.d');detail?dd.textContent=detail:dd.remove();
+      li.querySelector('.own').textContent=owner;
+      cb.checked=!!S.checked[id];
+      cb.addEventListener('change',()=>{
+        if(cb.checked){S.checked[id]={at:Date.now(),by:S.who||''};S.last={id,at:Date.now()}}
+        else{delete S.checked[id];S.last={id,at:Date.now(),un:true}}
+        save();paintItem(li,id);update();
+      });
+      const nb=li.querySelector('.notebtn');
+      nb.addEventListener('click',()=>{
+        let ta=li.querySelector('textarea');
+        if(ta){ta.focus();return}
+        ta=makeNote(li,id);ta.focus();
+      });
+      if(S.notes[id])makeNote(li,id);
+      paintItem(li,id);ul.appendChild(li);
+    });
+    d.appendChild(ul);
+    d.addEventListener('toggle',()=>{S.open[p.id]=d.open;save()});
+    host.appendChild(d);
+  });
+
+  function makeNote(li,id){
+    const ta=document.createElement('textarea');ta.id='note-'+id;ta.setAttribute('aria-label','Note');
+    ta.placeholder='Notes - what was decided, what is blocking, who to ask...';
+    ta.value=S.notes[id]||'';
+    let t;ta.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{
+      const v=ta.value.trim();v?S.notes[id]=ta.value:delete S.notes[id];S.last={id,at:Date.now(),note:true};save();paintItem(li,id);update()},400)});
+    li.appendChild(ta);return ta;
+  }
+  function paintItem(li,id){
+    const c=S.checked[id];li.classList.toggle('checked',!!c);
+    li.querySelector('.stamp').textContent=c?('Done '+fmt(c.at)+(c.by?' by '+c.by:'')):'';
+    const nb=li.querySelector('.notebtn'),has=!!S.notes[id];
+    nb.textContent=has?'Note saved':'Add note';nb.classList.toggle('has',has);
+    nb.hidden=!!li.querySelector('textarea');
+  }
+  function update(){
+    const done=all.filter(x=>S.checked[x.id]).length;
+    $('pct').textContent=done+' of '+all.length+' done';
+    $('meterFill').style.width=(done/all.length*100)+'%';
+    PHASES.forEach(p=>{
+      const n=p.items.filter(it=>S.checked[it[0]]).length,el=$('phase-'+p.id);
+      el.querySelector('.count').textContent=n+' / '+p.items.length;
+      el.classList.toggle('complete',n===p.items.length);
+    });
+    const next=all.find(x=>!S.checked[x.id]);
+    const box=$('resume');
+    if(!S.last&&!done){box.hidden=true;return}
+    box.hidden=false;
+    const lastItem=S.last&&all.find(x=>x.id===S.last.id);
+    let txt='';
+    if(lastItem)txt+='Last change '+fmt(S.last.at)+': '+(S.last.un?'unchecked ':S.last.note?'note on ':'checked ')+'"'+lastItem.text+'". ';
+    txt+=next?'Next up: "'+next.text+'".':'Everything is checked off.';
+    $('resumeText').textContent=txt;
+    $('jumpNext').hidden=!next;
+    $('jumpNext').onclick=()=>next&&jump(next);
+  }
+  function jump(x){
+    const d=$('phase-'+x.phase);d.open=true;
+    const li=$('item-'+x.id);li.scrollIntoView({block:'center'});
+    li.classList.remove('flash');void li.offsetWidth;li.classList.add('flash');
+    $('cb-'+x.id).focus({preventScroll:true});
+  }
+
+  // ---- Name ----
+  const who=$('who');who.value=S.who||'';
+  who.addEventListener('input',()=>{S.who=who.value.trim();save()});
+
+  // ---- Export / import / reset ----
+  $('exportBtn').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify({app:KEY,exported:new Date().toISOString(),state:S},null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='homepros-build-progress'+(S.who?'-'+S.who.toLowerCase().replace(/[^a-z0-9]+/g,'-'):'')+'.json';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    toast('Progress exported');
+  });
+  document.querySelector('label[for=importFile]').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('importFile').click()}});
+  $('importFile').addEventListener('change',e=>{
+    const f=e.target.files[0];if(!f)return;
+    f.text().then(t=>{
+      const j=JSON.parse(t);
+      if(j.app!==KEY||!j.state)throw new Error('wrong file');
+      S=Object.assign(blank(),j.state);save();location.reload();
+    }).catch(()=>toast('That file is not a Home Pros progress export'));
+    e.target.value='';
+  });
+  const wrap=$('resetWrap');
+  $('resetBtn').addEventListener('click',function ask(){
+    wrap.innerHTML='Clear all checks and notes in this browser? <button class="btn quiet" type="button" id="rsYes">Clear</button><button class="btn quiet" type="button" id="rsNo">Keep</button>';
+    $('rsYes').onclick=()=>{S=blank();save();location.reload()};
+    $('rsNo').onclick=()=>{wrap.innerHTML='<button class="btn quiet" id="resetBtn" type="button">Reset checklist</button>';$('resetBtn').addEventListener('click',ask)};
+    $('rsNo').focus();
+  });
+
+  let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600)}
+
+  update();
+})();
+</script>
+</body>
+</html>
